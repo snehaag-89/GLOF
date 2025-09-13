@@ -1,49 +1,55 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../supabaseClient"; // path check karo
+import React, { useEffect, useState, useRef } from "react";
 
-export default function Alerts() {
+const AlertComponent = () => {
   const [alerts, setAlerts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [started, setStarted] = useState(false);
+  const audioRef = useRef(null);
+  const wsRef = useRef(null);
 
-  useEffect(() => {
-    fetchAlerts();
-  }, []);
+  const startAlerts = () => {
+    // Create audio on user interaction
+    audioRef.current = new Audio("https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg");
+    audioRef.current.loop = true;
 
-  // Supabase se latest alerts fetch karna
-  const fetchAlerts = async () => {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("alerts")
-      .select("*")
-      .order("created_at", { ascending: false }) // latest sabse upar
-      .limit(5);
+    // Connect WebSocket
+    wsRef.current = new WebSocket("ws://localhost:4000");
 
-    if (error) {
-      console.error("❌ Error fetching alerts:", error.message);
-    } else {
-      console.log("✅ Alerts fetched:", data);
-      setAlerts(data);
-    }
-    setLoading(false);
+    wsRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setAlerts(prev => [...prev, data.message]);
+
+      if (data.message.includes("crossed 5")) {
+        audioRef.current.play().catch(err => console.log(err));
+      } else {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+
+    setStarted(true);
   };
 
-  return (
-    <div className="p-4 bg-white shadow rounded-2xl">
-      <h2 className="text-lg font-bold mb-2">⚠️ Latest Alerts</h2>
+  useEffect(() => {
+    return () => {
+      if (wsRef.current) wsRef.current.close();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : alerts.length === 0 ? (
-        <p>No alerts available</p>
-      ) : (
-        <ul className="list-disc pl-5 space-y-1">
-          {alerts.map((alert) => (
-            <li key={alert.id} className="text-red-600 font-medium">
-              {alert.message}
-            </li>
-          ))}
-        </ul>
-      )}
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>Real-time Alerts</h2>
+      {!started && <button onClick={startAlerts}>Start Alerts</button>}
+      <ul>
+        {alerts.map((msg, i) => (
+          <li key={i}>{msg}</li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+export default AlertComponent;

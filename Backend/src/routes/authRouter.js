@@ -1,0 +1,13 @@
+const express = require('express');
+const authRouter = express.Router();
+
+const userMiddleware = require('../middleware/authMiddleware'); // ✅ Fixed typo in folder name
+const { register, login, logout } = require('../controller/authcontroller');
+const userMiddleWare = require('../middleware/authMiddleware');
+
+// Routes
+authRouter.post('/register', register);
+authRouter.post('/login', login);
+authRouter.post('/logout', userMiddleware, logout);
+
+module.exports = authRouter;

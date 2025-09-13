@@ -1,26 +1,22 @@
 // src/App.jsx
 import Navbar from "./components/Navbar";
 import Alerts from "./components/Alerts";
+import ProtectedRoute from "./utils/ProtectedRoute";
 import Analytics from "./components/Analytics";
 import MapBox from "./components/MapBox";
-
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Register from "./pages/Auth";
 export default function App() {
-  return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Navbar */}
-      <Navbar />
+  return (<Router>
+    <Routes>
+      <Route path="/auth" element={<Register/>}/>
+      <Route path="login" element={<Login/>}></Route>
+      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+    </Routes> 
 
-      {/* Dashboard Grid */}
-      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Alerts */}
-        <Alerts />
-
-        {/* Analytics */}
-        <Analytics />
-
-        {/* Map */}
-        <MapBox />
-      </div>
-    </div>
+    </Router>
+   
   );
 }
