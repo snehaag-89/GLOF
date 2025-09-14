@@ -1,40 +1,64 @@
-import React from "react";
-import Alerts from "../components/Alerts";
-import AlertComponent from "../components/Alerts";
-import Analytics from "../components/Analytics";
-import MapBox from "../components/MapBox";
-import Volunteers from "../components/Volunteers";
-import Donations from "../components/Donations";
+import React from 'react';
+import Card from './Card';
+import WaterLevelChart from './WaterLevelChart';
+import RainfallChart from './RainfallChart';
+import FloodMap from './FloodMap';
+import Statistics from './Statistics';
 
-function Dashboard() {
+const Dashboard = ({
+  waterLevelData,
+  rainfallData,
+  waterLevel,
+  rainfall,
+  affectedAreas,
+  lastUpdated,
+  alertShown,
+  setAlertShown
+}) => {
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      {/* Top 3 Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white shadow rounded-lg p-4">
-          <AlertComponent />
-        </div>
-        <div className="bg-white shadow rounded-lg p-4">
-          <Analytics />
-        </div>
-        <div className="bg-white shadow rounded-lg p-4">
-          <MapBox />
-        </div>
-      </div>
-
-      {/* Bottom 2 Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white shadow rounded-lg p-4">
-          <h2 className="text-lg font-bold mb-3">Volunteer Registration</h2>
-          <Volunteers />
-        </div>
-        <div className="bg-white shadow rounded-lg p-4">
-          <h2 className="text-lg font-bold mb-3">Food Donation</h2>
-          <Donations />
-        </div>
-      </div>
+    <div className="dashboard">
+      <Card 
+        title="Water Level Monitoring" 
+        icon="fas fa-water"
+        lastUpdated={lastUpdated.waterLevel}
+      >
+        <WaterLevelChart 
+          data={waterLevelData} 
+          currentValue={waterLevel}
+          alertShown={alertShown}
+          setAlertShown={setAlertShown}
+        />
+      </Card>
+      
+      <Card 
+        title="Rainfall Measurement" 
+        icon="fas fa-cloud-rain"
+        lastUpdated={lastUpdated.rainfall}
+      >
+        <RainfallChart data={rainfallData} />
+      </Card>
+      
+      <Card 
+        title="Affected Areas" 
+        icon="fas fa-map-marked-alt"
+        lastUpdated={lastUpdated.map}
+      >
+        <FloodMap />
+      </Card>
+      
+      <Card 
+        title="Current Statistics" 
+        icon="fas fa-chart-bar"
+        lastUpdated={lastUpdated.stats}
+      >
+        <Statistics 
+          waterLevel={waterLevel}
+          rainfall={rainfall}
+          affectedAreas={affectedAreas}
+        />
+      </Card>
     </div>
   );
-}
+};
 
 export default Dashboard;

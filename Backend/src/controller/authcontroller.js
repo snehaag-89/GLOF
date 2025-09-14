@@ -11,7 +11,7 @@ const register = async (req, res) => {
   try {
     validate(req.body);
 
-    const {name,password, email,address } = req.body;
+    const {name,password, email,address,phone} = req.body;
 
     // Hash password
     req.body.password = await bcrypt.hash(password, 10);
@@ -27,6 +27,7 @@ const register = async (req, res) => {
     const reply={
       name:u1.name,
       email:u1.email,
+      phone:u1.phone,
       address:address,
       _id:u1._id
     }
