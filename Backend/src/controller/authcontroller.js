@@ -11,16 +11,17 @@ const register = async (req, res) => {
   try {
     validate(req.body);
 
-    const {name,password, email,address,phone} = req.body;
+    const {name,password, email,address,phone,role} = req.body;
 
     // Hash password
+    
     req.body.password = await bcrypt.hash(password, 10);
     
     // Create user in DB
     const u1 = await User.create(req.body);
 
     // Create token using u1._id (not model name)
-    const token = jwt.sign({ _id: u1._id, email:email }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: u1._id, email:email ,role:role}, process.env.JWT_SECRET, {
       expiresIn: 60 * 60,
     });
     req.result=u1._id;

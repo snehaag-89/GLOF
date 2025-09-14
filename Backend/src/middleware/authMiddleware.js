@@ -14,7 +14,7 @@ const userMiddleWare = async (req, res, next) => {
 
     const result = await User.findById(_id);
     if (!result) throw new Error("User doesn't exist");
-    req.result=_id;
+    req.result=result;
     req.user = result; // changed to `user` for standard naming
     next();
   } catch (err) {

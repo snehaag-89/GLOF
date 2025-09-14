@@ -4,6 +4,7 @@ const cors=require('cors');
 const cookieParser=require('cookie-parser')
 const connectDB=require('./config/db')
 const authRouter=require('./routes/authRouter')
+const requestRouter=require('./routes/requestRouter')
 const app=express();
 app.use(express.json());
 app.use(cookieParser());
@@ -17,3 +18,4 @@ app.get("/",(req,res)=>{
 })
 app.use('/api/auth',authRouter);
 app.listen(4000,()=>console.log(`Server running on Port 4000`))
+app.use('/api/request',requestRouter);
