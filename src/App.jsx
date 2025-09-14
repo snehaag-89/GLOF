@@ -10,12 +10,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Auth";
+import VolunteerPanel from "./components/SeperatePannel/VolunteerPanel";
 export default function App() {
   return (<Router>
     <Routes>
       <Route path="/auth" element={<Register/>}/>
       <Route path="login" element={<Login/>}></Route>
-      <Route path="/" element={<ProtectedRoute><MedicalHelpVolunteer /></ProtectedRoute>} />
+      <Route path="/" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} />
     </Routes> 
 
     </Router>

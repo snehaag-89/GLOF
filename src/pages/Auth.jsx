@@ -47,12 +47,15 @@ const Register = () => {
     }
 
     try {
+      console.log("Backend Cllaed")
       const res = await axios.post("/api/auth/register", formData);
-
+console.log(res.data);
+console.log(res.data.user);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.reply));
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("loginTime", Date.now());
-
+        console.log("Regisraion Done")
+        console.log(res.data.user.role);
       setMessage("Account created successfully!");
       setIsSuccess(true);
 

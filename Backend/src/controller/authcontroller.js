@@ -10,8 +10,12 @@ const jwt = require('jsonwebtoken');
 const register = async (req, res) => {
   try {
     validate(req.body);
-
-    const {name,password, email,address,phone,role} = req.body;
+   console.log("Called")
+    const {name,password, email,address,phone} = req.body;
+    let {role}=req.body;
+    if(!role) role="user";
+    else role="volunteer";
+    console.log(role);
 
     // Hash password
     
@@ -21,7 +25,7 @@ const register = async (req, res) => {
     const u1 = await User.create(req.body);
 
     // Create token using u1._id (not model name)
-    const token = jwt.sign({ _id: u1._id, email:email ,role:role}, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: u1._id, email:email ,role:"volunteer"}, process.env.JWT_SECRET, {
       expiresIn: 60 * 60,
     });
     req.result=u1._id;
@@ -30,10 +34,11 @@ const register = async (req, res) => {
       email:u1.email,
       phone:u1.phone,
       address:address,
-      _id:u1._id
+      _id:u1._id,
+      role:role
     }
     req.result=u1._id;
-    console.log(reply);
+    
     res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
     res.status(200).json({
 
@@ -44,7 +49,21 @@ const register = async (req, res) => {
     res.status(400).send("Error: " + err.message);
   }
 };
+ const getuserdata=async(req,res)=>{
+  try {
+    const user = req.result;
+    if (!user) return res.status(404).json({ message: "User not found" });
 
+    const result = await User.findById(user._id);
+    if (!result) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json({
+      role: result.role
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+ }
 // Login function
 const login = async (req, res) => {
   try {
@@ -61,9 +80,10 @@ const login = async (req, res) => {
 const reply={
   name:user.name,
   email:user.email,
-  _id:user._id
+  _id:user._id,
+  role:user.role
 }
-    const token = jwt.sign({ _id: user._id, email:email}, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: user._id, email:email,role:user.role}, process.env.JWT_SECRET, {
       expiresIn: 60 * 60,
     });
 
@@ -94,4 +114,4 @@ res.status(401).send("Invalid")
   }
 }
 
-module.exports = { register, login ,logout };
+module.exports = { register, login ,logout ,getuserdata};
