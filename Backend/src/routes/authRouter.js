@@ -8,9 +8,9 @@ const {
   login, 
   logout, 
   getuserdata, 
-  joinVolunteer,      // ✅ NEW
+  joinVolunteer,     // ✅ NEW
   getVolunteerRequests, // ✅ NEW
-  approveVolunteer    // ✅ NEW
+    // ✅ NEW
 } = require('../controller/authcontroller');
 
 // Routes
@@ -22,6 +22,7 @@ authRouter.get('/getuserdata', userMiddleware, getuserdata);
 // Volunteer-related
 authRouter.post('/join-volunteer', userMiddleware, joinVolunteer); // user requests
 authRouter.get('/volunteer-requests', userMiddleware, getVolunteerRequests); // admin only
-authRouter.post('/approve-volunteer/:id', userMiddleware, approveVolunteer); // admin approves
+// authRouter.post('/approve-volunteer/:id', userMiddleware, approveVolunteer); // admin approves
+
 
 module.exports = authRouter;

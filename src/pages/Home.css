@@ -1,21 +1,25 @@
+*{
+  margin:0;
+}
+
 .App {
   background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
   color: #fff;
-  min-height: 100vh;
+  min-height: 100vw;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 2400px;
+  margin: 0 ;
 }
 
 .dashboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 @media (max-width: 900px) {

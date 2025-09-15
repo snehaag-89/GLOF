@@ -2,13 +2,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
 } from "react-router-dom";
+
+import Layout from "./pages/Layout";
 import EvacuationPage from "./components/EvacuationModel";
-import VolunteerPanel from '../src/components/SeperatePannel/VolunteerPanel'
+import VolunteerPanel from "./components/SeperatePannel/VolunteerPanel";
 import CreateRequestPanel from "./components/SeperatePannel/Pannel";
-import Navbar from "./components/Navbar";
-import Alerts from "./components/Alerts";
 import Services from "./pages/Services";
 import FloodMonitoringDashboard from "./pages/Home";
 
@@ -18,56 +17,33 @@ import MapBox from "./components/MapBox";
 import MedicalHelpVolunteer from "./Volunteer/Medicalhelp";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Register from './pages/Auth';
+import Register from "./pages/Auth";
 import Login from "./pages/Login";
-
-import VoiceInput from "./pages/About";
-import Dictaphone from "./pages/Home";
-import MainPage from "./pages/MainPage";
-<<<<<<< HEAD
-import EvacuationModal from "./components/EvacuationModel";
-=======
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
->>>>>>> 2f213f118b9c7d1e2fbe9b6a1ba371ba5b7f20a2
 
 export default function App() {
   return (
     <Router>
       <Routes>
+        {/* Public (No Header/Sidebar) */}
         <Route path="/auth" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        {/* ✅ Protected Route Pattern */}
-        <Route path="/" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
-        <Route path="/volunteer" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} />
-        <Route path="/user_request" element={<ProtectedRoute><CreateRequestPanel /></ProtectedRoute>} />
-        <Route path="/services" element={<ProtectedRoute><Services /></ProtectedRoute>} />
-        <Route path="/Evacuation" element={<ProtectedRoute><EvacuationPage /></ProtectedRoute>} />
-        {/* Add other protected routes as needed */}
-        {/* <Route path="/user_request" element={<ProtectedRoute><CreateRequestPanel /></ProtectedRoute>} /> */}
-        {/* <Route path="/volunteer" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} /> */}
-
-
-        {/* ✅ UPDATED: Route for Join as Volunteer */}
-        <Route
-          path="/join-volunteer"
-          element={
-            <ProtectedRoute>
-              <JoinVolunteer />
-            </ProtectedRoute>
-          }
-        />
-
-
-        <Route
-          path="/admin/volunteer-requests"
-          element={
-            <ProtectedRoute>
-              <AdminVolunteerRequests />
-            </ProtectedRoute>
-          }
-        />
+        {/* Protected (With Header + Sidebar from Layout) */}
+        <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+          <Route path="/" element={<Home />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/evacuation" element={<EvacuationPage />} />
+          <Route path="/map" element={<MapBox />} />
+          <Route path="/volunteer" element={<VolunteerPanel />} />
+          <Route path="/user_request" element={<CreateRequestPanel />} />
+          <Route path="/medical-help" element={<MedicalHelpVolunteer />} />
+          <Route path="/join-volunteer" element={<JoinVolunteer />} />
+          <Route path="/admin/volunteer-requests" element={<AdminVolunteerRequests />} />
+          <Route path="/about" element={<About />} />
+        </Route>
       </Routes>
     </Router>
   );

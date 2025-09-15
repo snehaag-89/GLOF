@@ -1,6 +1,6 @@
 // import Request from "../models/Request";
 const Request = require('../models/Request');
-
+const User=require('../models/User');
 const createRequest = async (req, res) => {
     try {
       const { category, details } = req.body;
@@ -57,6 +57,16 @@ const getAllRequests = async (req, res) => {
   }
 };
 
+const getVolunteers = async (req, res) => {
+  try {
+    console.log("volunteer called")
+    const volunteers = await User.find({ role: "volunteer" });
+    console.log("volunteer called 2")
+    res.status(200).json(volunteers);
 
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching volunteers", error: err });
+  }
+};
 
-module.exports = {createRequest,getAllRequests};
+module.exports = {createRequest,getAllRequests,getVolunteers};
