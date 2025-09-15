@@ -24,12 +24,12 @@ import Login from "./pages/Login";
 import VoiceInput from "./pages/About";
 import Dictaphone from "./pages/Home";
 import MainPage from "./pages/MainPage";
-<<<<<<< HEAD
+
 import EvacuationModal from "./components/EvacuationModel";
-=======
+
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
->>>>>>> 2f213f118b9c7d1e2fbe9b6a1ba371ba5b7f20a2
+
 
 export default function App() {
   return (
