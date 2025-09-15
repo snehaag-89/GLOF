@@ -46,7 +46,8 @@ const register = async (req, res) => {
 };
 
 // ✅ Get user data
-const getuserdata = async (req, res) => {
+
+const getuserdata=async(req,res)=>{
   try {
     const user = req.result;
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -54,17 +55,11 @@ const getuserdata = async (req, res) => {
     const result = await User.findById(user._id);
     if (!result) return res.status(404).json({ message: "User not found" });
 
-    res.status(200).json({
-      role: result.role,
-      name: result.name,
-      email: result.email,
-      phone: result.phone,
-      address: result.address
-    });
+    res.status(200).json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
+ }
 
 // ✅ Login function
 const login = async (req, res) => {
