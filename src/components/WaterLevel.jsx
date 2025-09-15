@@ -90,10 +90,7 @@ const WaterLevelCard = ({ data }) => {
       <div className="chart-container">
         <canvas ref={chartRef}></canvas>
       </div>
-      <div className="status-indicator">
-        <div className={`status-dot status-${data.status}`}></div>
-        <span>Current Status: {data.status === 'high' ? 'High Risk' : data.status === 'medium' ? 'Medium Risk' : 'Low Risk'}</span>
-      </div>
+      
       <div className="last-updated">Last updated: <span>{new Date().toLocaleTimeString()}</span></div>
     </div>
   );
