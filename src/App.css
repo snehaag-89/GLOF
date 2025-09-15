@@ -1,42 +1,58 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
   text-align: center;
+  font-family: Arial, sans-serif;
+  background: #f7f8fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h2 {
+  color: #333;
+  margin-bottom: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.main-content {
+  min-height: 120px;
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 16px;
+  color: #222;
+  background: #fff;
+  cursor: pointer;
 }
 
-.card {
-  padding: 2em;
+.btn-style {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
-.read-the-docs {
-  color: #888;
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #4cafef;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #369fd1;
+}
+
+button:active {
+  background: #2b85ad;
 }
