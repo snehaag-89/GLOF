@@ -24,7 +24,12 @@ import Login from "./pages/Login";
 import VoiceInput from "./pages/About";
 import Dictaphone from "./pages/Home";
 import MainPage from "./pages/MainPage";
+<<<<<<< HEAD
 import EvacuationModal from "./components/EvacuationModel";
+=======
+import JoinVolunteer from "./pages/JoinVolunteer";
+import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
+>>>>>>> 2f213f118b9c7d1e2fbe9b6a1ba371ba5b7f20a2
 
 export default function App() {
   return (
@@ -32,7 +37,7 @@ export default function App() {
       <Routes>
         <Route path="/auth" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        
+
         {/* ✅ Protected Route Pattern */}
         <Route path="/" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
         <Route path="/volunteer" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} />
@@ -42,6 +47,27 @@ export default function App() {
         {/* Add other protected routes as needed */}
         {/* <Route path="/user_request" element={<ProtectedRoute><CreateRequestPanel /></ProtectedRoute>} /> */}
         {/* <Route path="/volunteer" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} /> */}
+
+
+        {/* ✅ UPDATED: Route for Join as Volunteer */}
+        <Route
+          path="/join-volunteer"
+          element={
+            <ProtectedRoute>
+              <JoinVolunteer />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/admin/volunteer-requests"
+          element={
+            <ProtectedRoute>
+              <AdminVolunteerRequests />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
