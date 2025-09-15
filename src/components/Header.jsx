@@ -11,6 +11,9 @@ export default function Header() {
         <button className="px-5 py-2 bg-[#00bcd4] text-white font-semibold rounded-md hover:bg-[#0097a7] transition-colors duration-200 flex items-center justify-center">
           Logout
         </button>
+         {/* <button className="px-5 py-2 ml-5 bg-[#00bcd4] text-white font-semibold rounded-md hover:bg-[#0097a7] transition-colors duration-200 flex items-center justify-center">
+          profile
+        </button> */}
       </div>
     </header>
   );
