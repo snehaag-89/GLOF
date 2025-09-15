@@ -22,9 +22,11 @@ export default function AdminVolunteerRequests() {
   // Approve volunteer
   const approveVolunteer = async (id) => {
     try {
-      await axios.post(`http://localhost:4000/api/auth/approve-volunteer/${id}`, {}, {
+      console.log("Aprrove called");
+      await axios.get(`http://localhost:4000/api/auth/approve-volunteer/${id}`, {}, {
         withCredentials: true
       });
+      console.log("Succes Finaly frontend")
       setRequests((prev) => prev.filter((req) => req._id !== id));
       alert("Volunteer approved successfully!");
     } catch (err) {

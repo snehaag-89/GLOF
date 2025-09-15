@@ -1,6 +1,10 @@
 const Request = require('../models/Request');
 
+const User=require('../models/User');
+
+
 // ✅ Create a new request
+
 const createRequest = async (req, res) => {
   try {
     const { category, details } = req.body;
@@ -51,6 +55,19 @@ const getAllRequests = async (req, res) => {
   } catch (err) {
     console.error("Error fetching requests:", err.message);
     res.status(500).json({ error: err.message });
+  }
+};
+
+
+const getVolunteers = async (req, res) => {
+  try {
+    console.log("volunteer called")
+    const volunteers = await User.find({ role: "volunteer" });
+    console.log("volunteer called 2")
+    res.status(200).json(volunteers);
+
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching volunteers", error: err });
   }
 };
 
@@ -117,9 +134,8 @@ console.log("Completed called")
     res.status(500).json({ error: err.message });
   }
 };
-module.exports = {
-  createRequest,
-  getAllRequests,
-  acceptRequest,
-  completeRequest
-};
+
+module.exports = {createRequest,getAllRequests,getVolunteers,acceptRequest,
+  completeRequest};
+
+

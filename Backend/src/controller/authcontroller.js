@@ -130,36 +130,34 @@ const joinVolunteer = async (req, res) => {
 // ✅ Admin: View Volunteer Requests
 const getVolunteerRequests = async (req, res) => {
   try {
-    if (req.user.role !== "admin") {
-      return res.status(403).json({ message: "Access denied: Admins only." });
-    }
-
-    const requests = await User.find({ volunteerRequest: true });
-    res.status(200).json(requests);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+     // Fetch all users with pending requests
+     const requests = await User.find({ volunteerRequest: true, role: "user" });
+     res.json(requests);
+   } catch (err) {
+     console.error("Fetch volunteer requests error:", err);
+     res.status(500).json({ error: "Internal server error" });
+   }
 };
 
 // ✅ Admin: Approve Volunteer
 const approveVolunteer = async (req, res) => {
   try {
-    if (req.user.role !== "admin") {
-      return res.status(403).json({ message: "Access denied: Admins only." });
-    }
-
-    const userId = req.params.id;
-    const user = await User.findById(userId);
-
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    user.role = "volunteer";
-    user.volunteerRequest = false;
-    await user.save();
-
-    res.status(200).json({ message: "User promoted to volunteer successfully." });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log("Called")
+    
+    console.log(req)
+  const { id } = req.params;
+      const user = await User.findById(id);
+  
+      if (!user) return res.status(404).json({ message: "User not found" });
+  
+      user.role = "volunteer";
+      user.volunteerRequest = false;
+      await user.save();
+  
+      res.json({ message: "User approved as volunteer", user });
+    } catch (err) {
+      console.error("Approve volunteer error:", err);
+      res.status(500).json({ error: "Internal server error" });
   }
 };
 
