@@ -118,7 +118,8 @@ function Home() {
   return (
     <div className="App">
       <div className="container">
-        <Header />
+        
+        
         <AlertBanner 
           visible={alertVisible} 
           onViewPlan={showEvacuationMap} 

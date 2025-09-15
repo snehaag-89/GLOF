@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 
 import VoiceInput from "./pages/About";
 import Dictaphone from "./pages/Home";
+import MainPage from "./pages/MainPage";
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         
         {/* ✅ Protected Route Pattern */}
-        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
         <Route path="/volunteer" element={<ProtectedRoute><VolunteerPanel /></ProtectedRoute>} />
         <Route path="/user_request" element={<ProtectedRoute><CreateRequestPanel /></ProtectedRoute>} />
         {/* Add other protected routes as needed */}
