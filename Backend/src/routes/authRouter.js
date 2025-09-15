@@ -9,7 +9,8 @@ const {
   logout, 
   getuserdata, 
   joinVolunteer,     // ✅ NEW
-  getVolunteerRequests, // ✅ NEW
+  getVolunteerRequests,
+  approveVolunteer // ✅ NEW
     // ✅ NEW
 } = require('../controller/authcontroller');
 
@@ -22,7 +23,7 @@ authRouter.get('/getuserdata', userMiddleware, getuserdata);
 // Volunteer-related
 authRouter.post('/join-volunteer', userMiddleware, joinVolunteer); // user requests
 authRouter.get('/volunteer-requests', userMiddleware, getVolunteerRequests); // admin only
-// authRouter.post('/approve-volunteer/:id', userMiddleware, approveVolunteer); // admin approves
+authRouter.get('/approve-volunteer/:id',approveVolunteer); // admin approves
 
 
 module.exports = authRouter;

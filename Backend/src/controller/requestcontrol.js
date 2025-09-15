@@ -1,10 +1,10 @@
 const Request = require('../models/Request');
-<<<<<<< HEAD
+
 const User=require('../models/User');
-=======
+
 
 // ✅ Create a new request
->>>>>>> f0f828221fb023c72caf38c6df85868cfeaa5cac
+
 const createRequest = async (req, res) => {
   try {
     const { category, details } = req.body;
@@ -58,7 +58,7 @@ const getAllRequests = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
+
 const getVolunteers = async (req, res) => {
   try {
     console.log("volunteer called")
@@ -71,8 +71,6 @@ const getVolunteers = async (req, res) => {
   }
 };
 
-module.exports = {createRequest,getAllRequests,getVolunteers};
-=======
 // ✅ Accept a request by volunteer
 const acceptRequest = async (req, res) => {
   try {
@@ -136,10 +134,8 @@ console.log("Completed called")
     res.status(500).json({ error: err.message });
   }
 };
-module.exports = {
-  createRequest,
-  getAllRequests,
-  acceptRequest,
-  completeRequest
-};
->>>>>>> f0f828221fb023c72caf38c6df85868cfeaa5cac
+
+module.exports = {createRequest,getAllRequests,getVolunteers,acceptRequest,
+  completeRequest};
+
+

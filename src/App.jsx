@@ -19,10 +19,10 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./pages/Auth";
 import Login from "./pages/Login";
-<<<<<<< HEAD
-import JoinVolunteer from "./pages/JoinVolunteer";
-import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
-=======
+
+
+
+
 
 import VoiceInput from "./pages/About";
 import Dictaphone from "./pages/Home";
@@ -33,7 +33,7 @@ import EvacuationModal from "./components/EvacuationModel";
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
 
->>>>>>> f0f828221fb023c72caf38c6df85868cfeaa5cac
+
 
 export default function App() {
   return (

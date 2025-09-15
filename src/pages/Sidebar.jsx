@@ -118,6 +118,16 @@ export default function Sidebar() {
                     </Link>
                   </li>
                 )}
+                 {role === "admin" && (
+                  <li>
+                    <Link to="/admin/volunteer-requests">
+                      <div className="flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl mx-2 transition-all duration-200 group bg-[rgb(129,154,145)] text-white shadow-inner">
+                        <FiUsers className="w-5 h-5" />
+                        {!isCollapsed && <span className="text-sm font-medium">Admin Panel</span>}
+                      </div>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </nav>

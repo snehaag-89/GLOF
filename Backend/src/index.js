@@ -7,7 +7,7 @@ const authRouter = require('./routes/authRouter');
 const requestRouter = require('./routes/requestRouter');
 
 // ✅ UPDATED: Import volunteer routes
-const volunteerRouter = require('./routes/volunteer');
+// const volunteerRouter = require('./routes/volunteer');
 
 const http = require('http');
 const { Server } = require('socket.io');
@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 // ✅ API Routes
 app.use('/api/auth', authRouter);
 app.use('/api/request', requestRouter);
-app.use('/api/volunteer', volunteerRouter); // ✅ Added volunteer routes
+// app.use('/api/volunteer', volunteerRouter); // ✅ Added volunteer routes
 
 // ✅ Start server
 const PORT = process.env.PORT || 4000;
