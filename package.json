@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
     "@tailwindcss/vite": "^4.1.13",
+    "axios": "^1.12.2",
     "chart.js": "^4.5.0",
     "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
@@ -44,5 +45,13 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snehaag-89/GLOF.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snehaag-89/GLOF/issues"
+  },
+  "homepage": "https://github.com/snehaag-89/GLOF#readme"
 }

@@ -171,7 +171,7 @@ console.log(res.data.user);
           {/* Submit */}
           <button
             type="submit"
-            className="w-full text-lg py-3 px-4 bg-gradient-to-r from-blue-500  to-purple-500   text-white font-bold shadow-lg hover:from-blue-600 hover:to-indigo-700 transition duration-300 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-gray-100"
+            className="w-full text-lg py-3 px-4 bg-gradient-to-r from-blue-500  to-purple-500   text-white font-bold shadow-lg hover:from-blue-600 hover:to-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-gray-100"
           >
             Register
           </button>
