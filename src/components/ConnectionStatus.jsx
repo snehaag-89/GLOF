@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const ConnectionStatus = ({ status }) => {
@@ -6,7 +5,7 @@ const ConnectionStatus = ({ status }) => {
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-2 rounded-full shadow-md backdrop-blur-xl border transition 
+      className={`flex items-center gap-3 px-4 py-2 mt-3 rounded-full shadow-md backdrop-blur-xl border transition 
         ${
           isConnected
             ? "bg-green-500/10 border-green-400/30"
