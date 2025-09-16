@@ -1,4 +1,4 @@
-*{
+/* *{
   margin:0;
 }
 
@@ -368,7 +368,10 @@
   font-weight: 500;
 }
 
-/* Leaflet map customization */
+
+
+
+
 .leaflet-container {
   background: #1a2b32;
   border-radius: 12px;
@@ -439,7 +442,7 @@ header p {
 }
 
 /* Additional enhancements */
-.glow-text {
+/* .glow-text {
   text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
 }
 
@@ -464,6 +467,8 @@ header p {
 }
 
 /* Responsive adjustments */
+
+/* 
 @media (max-width: 768px) {
   .stats {
     grid-template-columns: 1fr 1fr;
@@ -496,4 +501,4 @@ header p {
   .shelter-list {
     grid-template-columns: 1fr;
   }
-}
+}   */ 

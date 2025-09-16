@@ -551,13 +551,13 @@ function VolunteerPanel() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 bg-white rounded-2xl p-6 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Volunteer Dashboard</h1>
+          <div className="flex flex-col md:flex-row md:items-center justify-between ">
+            <div className="mb-20">
+              <h1 className="text-3xl font-bold text-gray-900 ">Volunteer Dashboard</h1>
               <p className="text-gray-600 mt-2">Welcome back, {user?.name || 'Volunteer'}!</p>
             </div>
             <div className="mt-4 md:mt-0 flex items-center space-x-2">

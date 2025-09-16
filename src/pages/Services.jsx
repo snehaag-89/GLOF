@@ -1,3 +1,259 @@
+// import React, { useEffect, useState, useRef } from "react";
+
+// // Main coordinates - MMMUT Gorakhpur
+// const MMMUT_COORDS = [26.7606, 83.3732];
+
+// // Hardcoded data for medical facilities
+// const medicalFacilities = [
+//   {
+//     name: "Gorakhpur Medical College",
+//     coords: [26.759, 83.3827],
+//     distance: "2.1 km",
+//     address: "Kunraghat, Gorakhpur",
+//     contact: "0551-2200877",
+//     capacity: "24/7 Emergency",
+//   },
+//   {
+//     name: "AIIMS Gorakhpur",
+//     coords: [26.7445, 83.3847],
+//     distance: "3.5 km",
+//     address: "Kunraghat, Gorakhpur",
+//     contact: "0551-250001",
+//     capacity: "Multi-specialty",
+//   },
+//   {
+//     name: "Shiva Hospital",
+//     coords: [26.7678, 83.3671],
+//     distance: "1.2 km",
+//     address: "Shivpur Road, Gorakhpur",
+//     contact: "0551-2201234",
+//     capacity: "24/7 Emergency",
+//   },
+//   {
+//     name: "Shanti Hospital",
+//     coords: [26.7523, 83.3618],
+//     distance: "2.8 km",
+//     address: "University Road, Gorakhpur",
+//     contact: "0551-2205678",
+//     capacity: "General Medicine",
+//   },
+// ];
+
+// // Hardcoded data for food distribution centers
+// const foodCenters = [
+//   {
+//     name: "Annapurna Food Center",
+//     coords: [26.7632, 83.3698],
+//     distance: "0.8 km",
+//     address: "Near MMMUT Gate",
+//     contact: "9876543210",
+//     capacity: "500 meals/day",
+//   },
+//   {
+//     name: "Flood Relief Food Camp",
+//     coords: [26.7567, 83.3792],
+//     distance: "1.5 km",
+//     address: "Kunraghat Crossing",
+//     contact: "0551-2209999",
+//     capacity: "1000 meals/day",
+//   },
+//   {
+//     name: "Community Kitchen",
+//     coords: [26.7689, 83.3624],
+//     distance: "1.7 km",
+//     address: "Shivpur Chauraha",
+//     contact: "8765432109",
+//     capacity: "800 meals/day",
+//   },
+// ];
+
+// // Hardcoded data for shelter facilities
+// const shelterFacilities = [
+//   {
+//     name: "MMMUT Emergency Shelter",
+//     coords: [26.7612, 83.3728],
+//     distance: "On Campus",
+//     address: "MMMUT Campus",
+//     contact: "0551-2273958",
+//     capacity: "200 people",
+//   },
+//   {
+//     name: "Government Flood Shelter",
+//     coords: [26.7543, 83.3816],
+//     distance: "1.8 km",
+//     address: "Kunraghat",
+//     contact: "0551-2205050",
+//     capacity: "500 people",
+//   },
+//   {
+//     name: "Community Center Shelter",
+//     coords: [26.7654, 83.3652],
+//     distance: "1.2 km",
+//     address: "Shivpur",
+//     contact: "7654321098",
+//     capacity: "300 people",
+//   },
+//   {
+//     name: "School Temporary Shelter",
+//     coords: [26.7581, 83.3587],
+//     distance: "2.3 km",
+//     address: "University Road",
+//     contact: "6543210987",
+//     capacity: "400 people",
+//   },
+// ];
+
+// function Services() {
+//   const [activeTab, setActiveTab] = useState("medical");
+//   const [isLeafletLoaded, setIsLeafletLoaded] = useState(false);
+//   const mapsInitialized = useRef({ medical: false, food: false, shelter: false });
+//   const maps = useRef({ medical: null, food: null, shelter: null });
+
+//   useEffect(() => {
+//     // Load Leaflet CSS dynamically
+//     const link = document.createElement("link");
+//     link.rel = "stylesheet";
+//     link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+//     link.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+//     link.crossOrigin = "";
+//     document.head.appendChild(link);
+
+//     // Load Leaflet JS dynamically
+//     const script = document.createElement("script");
+//     script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+//     script.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+//     script.crossOrigin = "";
+//     script.onload = () => setIsLeafletLoaded(true);
+//     document.body.appendChild(script);
+
+//     return () => {
+//       document.head.removeChild(link);
+//       document.body.removeChild(script);
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     if (isLeafletLoaded) {
+//       if (activeTab === "medical" && !mapsInitialized.current.medical) {
+//         initMedicalMap();
+//         mapsInitialized.current.medical = true;
+//       } else if (activeTab === "food" && !mapsInitialized.current.food) {
+//         initFoodMap();
+//         mapsInitialized.current.food = true;
+//       } else if (activeTab === "shelter" && !mapsInitialized.current.shelter) {
+//         initShelterMap();
+//         mapsInitialized.current.shelter = true;
+//       } else {
+//         setTimeout(() => {
+//           if (maps.current[activeTab]) {
+//             maps.current[activeTab].invalidateSize();
+//           }
+//         }, 100);
+//       }
+//     }
+//   }, [activeTab, isLeafletLoaded]);
+
+//   // Custom icon creation
+//   const createCustomIcon = (iconColor) => {
+//     return window.L.divIcon({
+//       className: "custom-marker",
+//       html: `<div style="background-color: ${iconColor}; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></div>`,
+//       iconSize: [24, 24],
+//       iconAnchor: [12, 12],
+//     });
+//   };
+
+//   // Map init functions (same as before, no change)
+//   const initMedicalMap = () => { /* ...same logic... */ };
+//   const initFoodMap = () => { /* ...same logic... */ };
+//   const initShelterMap = () => { /* ...same logic... */ };
+
+//   const handleTabClick = (tabId) => setActiveTab(tabId);
+
+//   return (
+//     <div className="p-6 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] min-h-screen text-white font-sans">
+//       <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
+//         Emergency Services During Floods - MMMUT Gorakhpur
+//       </h1>
+
+//       {/* Tabs */}
+//       <div className="flex justify-center space-x-3 mb-6">
+//         {["medical", "food", "shelter"].map((tab) => (
+//           <button
+//             key={tab}
+//             onClick={() => handleTabClick(tab)}
+//             className={`px-5 py-2 rounded-md transition-colors ${
+//               activeTab === tab
+//                 ? "bg-[#203a43] text-white"
+//                 : "bg-[#2c5364] hover:bg-[#345d6e]"
+//             }`}
+//           >
+//             {tab === "medical"
+//               ? "Medical Help"
+//               : tab === "food"
+//               ? "Food Help"
+//               : "Shelter Help"}
+//           </button>
+//         ))}
+//       </div>
+
+//       {/* Content */}
+//       <div
+//         id="medical"
+//         className={`${activeTab === "medical" ? "block" : "hidden"} bg-[#1a2a33] rounded-lg shadow-md p-4 mb-6`}
+//       >
+//         <h2 className="text-lg font-semibold mb-4">Nearby Medical Facilities</h2>
+//         <div className="flex flex-col md:flex-row gap-4">
+//           <div id="medical-map" className="flex-1 h-80 rounded-md shadow-md"></div>
+//           <div className="w-full md:w-1/3 bg-[#203a43] rounded-md shadow-md p-3">
+//             <div className="font-semibold mb-2">Medical Facilities (4)</div>
+//             <div id="medical-list" className="space-y-3"></div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div
+//         id="food"
+//         className={`${activeTab === "food" ? "block" : "hidden"} bg-[#1a2a33] rounded-lg shadow-md p-4 mb-6`}
+//       >
+//         <h2 className="text-lg font-semibold mb-4">Nearby Food Distribution Centers</h2>
+//         <div className="flex flex-col md:flex-row gap-4">
+//           <div id="food-map" className="flex-1 h-80 rounded-md shadow-md"></div>
+//           <div className="w-full md:w-1/3 bg-[#203a43] rounded-md shadow-md p-3">
+//             <div className="font-semibold mb-2">Food Centers (3)</div>
+//             <div id="food-list" className="space-y-3"></div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div
+//         id="shelter"
+//         className={`${activeTab === "shelter" ? "block" : "hidden"} bg-[#1a2a33] rounded-lg shadow-md p-4`}
+//       >
+//         <h2 className="text-lg font-semibold mb-4">Nearby Shelter Facilities</h2>
+//         <div className="flex flex-col md:flex-row gap-4">
+//           <div id="shelter-map" className="flex-1 h-80 rounded-md shadow-md"></div>
+//           <div className="w-full md:w-1/3 bg-[#203a43] rounded-md shadow-md p-3">
+//             <div className="font-semibold mb-2">Shelters (4)</div>
+//             <div id="shelter-list" className="space-y-3"></div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Services;
+
+
+
+
+
+
+//css ka code
+
+
+
 import React, { useEffect, useState, useRef } from 'react';
 import './Services.css'
 
