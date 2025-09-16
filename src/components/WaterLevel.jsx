@@ -32,8 +32,8 @@ const WaterLevelCard = ({ data }) => {
           {
             label: "Water Level (meters)",
             data: data.waterLevelData,
-            borderColor: "#0A5EB0",
-            backgroundColor: "rgba(44, 120, 200, 0.2)",
+            borderColor: "#0077CC",
+            backgroundColor: "rgba(100, 181, 246, .7)",
             borderWidth: 2,
             tension: 0.4,
             fill: true,
@@ -57,7 +57,7 @@ const WaterLevelCard = ({ data }) => {
           y: {
             beginAtZero: true,
             grid: {
-              color: "rgba(255, 255, 255, 0.1)",
+              color: "rgba(0, 0, 0, 0.1)",
             },
             ticks: {
               color: "black",
@@ -65,7 +65,7 @@ const WaterLevelCard = ({ data }) => {
           },
           x: {
             grid: {
-              color: "rgba(255, 255, 255, 0.1)",
+              color: "rgba(0, 0, 0, 0.1)",
             },
             ticks: {
               color: "black",
@@ -84,10 +84,10 @@ const WaterLevelCard = ({ data }) => {
   }, [data.waterLevelData]);
 
   return (
-    <div className="bg-[#d4dedf] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-cyan-400/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-cyan-400/40">
+    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-cyan-400/40">
       {/* Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-        <h2 className="text-xl font-semibold text-black">
+        <h2 className="text-xl font-bold text-black">
           Water Level Monitoring
         </h2>
         <i className="fas fa-water text-cyan-400 text-2xl"></i>
@@ -99,7 +99,7 @@ const WaterLevelCard = ({ data }) => {
       </div>
 
       {/* Last Updated */}
-      <div className="text-right text-sm text-gray-300/80 mt-4">
+      <div className="text-right text-m text-black mt-6">
         Last updated:{" "}
         <span className="font-medium">{new Date().toLocaleTimeString()}</span>
       </div>
