@@ -1,6 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import axios from "axios";
+import JoinVolunteer from "../../pages/JoinVolunteer";
+
+import {
+  FiHelpCircle,
+  FiUsers,
+  FiUserPlus,
+  FiMic,
+  FiSquare,
+  FiCheckCircle,
+  FiRefreshCcw,
+  FiCoffee,
+  FiPhone,
+  FiMapPin,
+  FiHome,
+  FiHeart,
+  FiActivity,
+} from "react-icons/fi";
 
 export default function CreateRequestPanel() {
   const [selectedTab, setSelectedTab] = useState("help");
@@ -14,14 +31,11 @@ export default function CreateRequestPanel() {
     transcript,
     listening,
     resetTranscript,
-    browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-
- 
 
   const fetchVolunteers = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/request/get_volunteer_detail", {},{
+      const res = await axios.get("http://localhost:4000/api/request/get_volunteer_detail", {
         withCredentials: true,
       });
       setVolunteers(res.data || []);
@@ -71,15 +85,25 @@ export default function CreateRequestPanel() {
   };
 
   return (
-    <div className="h-full w-full bg-gradient-to-br from-indigo-50 to-purple-100 p-6 overflow-y-auto">
-      <div className="h-full w-full bg-white/70 backdrop-blur-xl shadow-2xl rounded-2xl p-8 border border-gray-200">
+    <div className="max-h-screen w-full bg-gradient-to-br from-[#E1F5FE] to-[#B2EBF2] md:p-0 overflow-y-auto">
+      <div className="max-w-5xl mx-auto bg-white/95 backdrop-blur-xl shadow-xl  p-6 md:p-1 ">
+        
+        {/* Header */}
+        <div className="text-center mb-5">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[#003087] ">
+            HelpBridge
+          </h1>
+          <p className="text-black text-lg font-medium">
+            Seamlessly connect those in need with trusted volunteers
+          </p>
+        </div>
 
-        {/* ─── Tabs ─────────────────────────────── */}
-        <div className="flex justify-around border-b mb-8">
+        {/* Tabs */}
+        <div className="flex flex-col sm:flex-row justify-between gap-2 mb-8 bg-[#E1F5FE] p-2 rounded-xl">
           {[
-            { key: "help", label: "🆘 Need Help" },
-            { key: "contribute", label: "🤝 Contribute" },
-            { key: "register", label: "✍️ Register as Volunteer" },
+            { key: "help", label: "Request Help", icon: <FiHelpCircle size={28} /> },
+            { key: "contribute", label: "Find Volunteers", icon: <FiUsers size={28} /> },
+            { key: "register", label: "Join as Volunteer", icon: <FiUserPlus size={30} /> },
           ].map((tab) => (
             <button
               key={tab.key}
@@ -87,86 +111,109 @@ export default function CreateRequestPanel() {
                 setSelectedTab(tab.key);
                 setMessage("");
               }}
-              className={`flex-1 py-4 text-lg font-semibold border-b-4 transition-all ${
+              className={`flex items-center justify-center gap-2 py-3 px-4 text-m md:text-base font-medium rounded-lg transition-all ${
                 selectedTab === tab.key
-                  ? "border-indigo-600 text-indigo-700"
-                  : "border-transparent text-gray-500 hover:text-indigo-500"
+                  ? "bg-gradient-to-r from-[#154D71] to-[#1C6EA4] text-white shadow-md"
+                  : "text-black hover:bg-white hover:shadow-sm"
               }`}
             >
-              {tab.label}
+              {tab.icon}
+              <span>{tab.label}</span>
             </button>
           ))}
         </div>
 
-        {/* ─── Help Tab ─────────────────────────────── */}
+        {/* Help Tab */}
         {selectedTab === "help" && (
-          <div>
-            <h2 className="text-3xl font-bold text-center text-indigo-800 mb-6">
-              Create Assistance Request
+          <div className="animate-fadeIn">
+            <h2 className="text-2xl font-bold text-center text-[#0c2788] mb-6">
+              Submit Assistance Request
             </h2>
-            <p className="text-center text-gray-500 mb-6 text-lg">
-              Choose a category and describe your needs
-            </p>
+            
+            <div className="mb-8">
+            <div className="grid grid-cols-1 text-black sm:grid-cols-3 gap-4">
+  {[
+    { name: "Medical", icon: <FiActivity size={32} className="text-red-700" />, border: "border-2 border-red-300",bg:"bg-red-200/30" },
+    { name: "Food", icon: <FiCoffee size={32} className="text-purple-800" />, border: "border-2 border-purple-300" ,bg:"bg-purple-200/30"},
+    { name: "Shelter", icon: <FiHome size={32} className="text-yellow-500" />, border: "border-2 border-yellow-300" ,bg:"bg-yellow-50"},
+  ].map((cat) => (
+    <button
+      key={cat.name}
+      onClick={() => setSelectedCategory(cat.name)}
+      className={`p-5 rounded-xl text-center transition-all flex flex-col items-center
+        ${
+          selectedCategory === cat.name
+            ? `${cat.border} ${cat.bg} text-white shadow-md`
+            : `bg-white text-[#003087] ${cat.border} hover:border-[#0077CC]`
+        }`}
+    >
+      {cat.icon}
+      <span className="mt-2 text-black font-medium">{cat.name}</span>
+    </button>
+  ))}
+</div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-              {["Medical", "Food", "Shelter"].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`p-6 rounded-2xl border-2 text-lg font-medium transition-all ${
-                    selectedCategory === cat
-                      ? "bg-indigo-100 border-indigo-600 text-indigo-700 shadow-lg"
-                      : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+
             </div>
 
             {selectedCategory && (
-              <div>
+              <div className="bg-white p-6 rounded-2xl border border-black shadow-sm">
+                <h3 className="text-lg font-semibold text-black/70 mb-4">
+                  Describe your {selectedCategory.toLowerCase()} needs
+                </h3>
+                
                 <textarea
-                  rows={6}
+                  rows={5}
                   value={details || transcript}
                   onChange={(e) => setDetails(e.target.value)}
-                  placeholder={`Describe your ${selectedCategory.toLowerCase()} needs...`}
-                  className="w-full border rounded-2xl p-4 text-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none shadow"
+                  placeholder="Provide clear details about what you need..."
+                  className="w-full border border-black rounded-xl p-4 text-black font-semibold focus:ring-2 focus:ring-[#0077CC] focus:border-transparent outline-none resize-none"
                 />
-                <div className="flex gap-4 mt-5">
+                
+                <div className="flex flex-col sm:flex-row gap-3 mt-5">
                   {!listening ? (
                     <button
                       onClick={handleMicStart}
-                      className="flex-1 bg-indigo-600 text-white py-3 rounded-xl shadow hover:bg-indigo-700 transition text-lg"
+                      className="flex font-semibold items-center justify-center gap-2 bg-[#0077CC] border-1 border-black text-white py-3 px-4 rounded-xl shadow hover:bg-[#003087] transition flex-1"
                     >
-                      🎤 Start Speaking
+                      <FiMic size={18} />
+                      <span>Start Voice Input</span>
                     </button>
                   ) : (
                     <button
                       onClick={handleMicStop}
-                      className="flex-1 bg-red-500 text-white py-3 rounded-xl shadow hover:bg-red-600 transition text-lg"
+                      className="flex items-center justify-center gap-2 bg-[#FF6B6B] text-white py-3 px-4 rounded-xl shadow hover:bg-[#D32F2F] transition flex-1"
                     >
-                      🛑 Stop & Save
+                      <FiSquare size={18} />
+                      <span>Stop Recording</span>
                     </button>
                   )}
 
                   <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex-1 bg-green-600 text-white py-3 rounded-xl shadow hover:bg-green-700 transition disabled:opacity-50 text-lg"
+                    className="flex items-center justify-center gap-2 bg-green-600 text-white py-3 px-4 rounded-xl shadow hover:bg-green-800 transition disabled:opacity-50 flex-1"
                   >
-                    {isSubmitting ? "Submitting..." : "✅ Submit"}
+                    <FiCheckCircle size={18} />
+                    <span>{isSubmitting ? "Submitting..." : "Submit Request"}</span>
                   </button>
                 </div>
+                
+                {listening && (
+                  <div className="mt-4 p-3 bg-[#e0e4f8] rounded-lg text-[#003087]">
+                    <p className="font-medium">Listening...</p>
+                    <p className="mt-1 text-black">{transcript}</p>
+                  </div>
+                )}
               </div>
             )}
 
             {message && (
               <div
-                className={`mt-6 p-4 rounded-xl text-center font-semibold text-lg ${
+                className={`mt-6 p-4 rounded-xl text-center font-semibold ${
                   message.includes("✅")
-                    ? "bg-green-50 text-green-700 border border-green-300"
-                    : "bg-red-50 text-red-700 border border-red-300"
+                    ? "bg-[#E7F6E9] text-[#2E7D32] border border-[#4CAF50]"
+                    : "bg-[#FFEBEE] text-[#C62828] border border-[#EF5350]"
                 }`}
               >
                 {message}
@@ -175,80 +222,94 @@ export default function CreateRequestPanel() {
           </div>
         )}
 
-        {/* ─── Contribute Tab ─────────────────────────────── */}
+        {/* Contribute Tab */}
         {selectedTab === "contribute" && (
-          <div>
-            <h2 className="text-3xl font-bold text-center text-green-700 mb-6">
-              Volunteer List
-            </h2>
+  <div className="animate-fadeIn">
+    <h2 className="text-3xl font-extrabold text-center text-[#003087] mb-8 tracking-wide">
+      Available Volunteers
+    </h2>
 
-            {!volunteers.length ? (
-              <div className="flex justify-center">
-                <button
-                  onClick={fetchVolunteers}
-                  className="px-6 py-3 bg-green-600 text-white text-lg font-semibold rounded-xl shadow hover:bg-green-700 transition"
+    {/* Load/Refresh Button */}
+    <div className="flex justify-center mb-8">
+      <button
+        onClick={fetchVolunteers}
+        className="flex items-center gap-2 bg-gradient-to-r from-[#11b01b] to-[#0a8c13] text-white py-3 px-8 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-200"
+      >
+        <FiRefreshCcw size={18} />
+        <span className="font-medium">
+          {volunteers.length ? "Refresh Volunteers" : "Load Volunteers"}
+        </span>
+      </button>
+    </div>
+
+    {/* Volunteer List */}
+    {volunteers.length > 0 ? (
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6">
+        {volunteers.map((vol, i) => (
+          <div
+            key={i}
+            className="p-6 rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-xl hover:border-[#003087]/50 transition duration-200"
+          >
+            {/* Profile Header */}
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-14 h-14 rounded-full bg-[#f5f5f5] border border-gray-300 flex items-center justify-center text-[#003087] text-xl font-bold">
+                {vol.name ? vol.name.charAt(0).toUpperCase() : "V"}
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg text-[#003087]">
+                  {vol.name || "Anonymous Volunteer"}
+                </h3>
+                <p className="text-red-800">
+                  {vol.category || "Volunteer"}
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-3 text-gray-700">
+              <p className="flex items-center gap-2">
+                <FiPhone className="text-[#0c5b93]" />
+                <a
+                  href={`tel:${vol.phone}`}
+                  className="hover:text-[#003087] hover:underline"
                 >
-                  📋 Get All Volunteers
-                </button>
-              </div>
-            ) : (
-              <div className="grid gap-6 sm:grid-cols-2 mt-6">
-                {volunteers.map((vol, i) => (
-                  <div
-                    key={i}
-                    className="p-6 rounded-2xl border shadow-md bg-white hover:shadow-xl transition"
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-2xl font-bold shadow">
-                        👤
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-xl text-gray-800">
-                          {vol.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          {vol.category || "General"}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-y-2 text-gray-700 text-lg">
-                      <p className="flex items-center gap-2">
-                        📞{" "}
-                        <a
-                          href={`tel:${vol.phone}`}
-                          className="text-green-600 hover:underline"
-                        >
-                          {vol.phone || "Not Available"}
-                        </a>
-                      </p>
-                      <p className="flex items-center gap-2">
-                        📍 {vol.location || "Location not provided"}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  {vol.phone || "Not Available"}
+                </a>
+              </p>
+              <p className="flex items-center gap-2">
+                <FiMapPin className="text-[#0c5b93]" />
+                <span>{vol.address || "Location not provided"}</span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      /* Empty State */
+      <div className="text-center py-14 bg-white rounded-2xl border border-gray-300 shadow-md">
+        <FiUsers className="mx-auto text-[#0c5b93] text-6xl mb-4" />
+        <h3 className="text-lg font-semibold text-gray-700 mb-2">
+          No Volunteers Loaded
+        </h3>
+        <p className="text-gray-500">
+          Click <span className="font-medium">"Load Volunteers"</span> to see available helpers in your community.
+        </p>
+      </div>
+    )}
+  </div>
+)}
+
+        {/* Register Tab */}
+        {selectedTab === "register" && (
+          <div className="animate-fadeIn">
+            <JoinVolunteer />
           </div>
         )}
 
-        {/* ─── Register Tab ─────────────────────────────── */}
-        {selectedTab === "register" && (
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-purple-700 mb-6">
-              Join as Volunteer
-            </h2>
-            <p className="text-gray-600 mb-8 text-lg">
-              Want to contribute? Register yourself as a volunteer.
-            </p>
-            <a
-              href="/join-volunteer"
-              className="px-8 py-4 bg-purple-600 text-white text-lg rounded-xl shadow hover:bg-purple-700 transition"
-            >
-              ✍️ Register Now
-            </a>
-          </div>
-        )}
+        {/* Footer Note */}
+        {/* <div className="mt-10 pt-5 border-t border-[#B2EBF2] text-center text-[#0077CC] text-sm">
+          <p>Your request will be securely shared with verified volunteers in your area</p>
+        </div> */}
       </div>
     </div>
   );

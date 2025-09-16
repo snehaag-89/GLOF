@@ -56,26 +56,30 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Overlay */}
-      {!isCollapsed && (
+      {/* {!isCollapsed && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-20 z-20 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-20 z-20 "
           onClick={() => setIsCollapsed(true)}
         />
-      )}
+      )} */}
       
       <aside
-        className={`h-screen data.rainfall.toFixed(1) text-black flex-shrink-0 fixed left-0 top-0 
-        overflow-y-auto transition-all duration-300 z-30 shadow-lg
-        ${isCollapsed ? "w-16" : "w-64"} lg:relative lg:z-0`}
-      >
-        {/* Toggle Button */}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-6 bg-[rgb(233,230,230)] hover:bg-[rgb(212,218,212)] text-black rounded-full w-6 h-6 
-          flex items-center justify-center shadow-md z-10 transition-all mr-5 duration-300 hidden lg:flex"
-        >
-          {isCollapsed ? <FiChevronRight size={12} /> : <FiChevronLeft size={14} />}
-        </button>
+
+  className={`h-screen bg-gradient-to-b ${bgStart} ${bgEnd} text-black flex-shrink-0
+  overflow-y-auto transition-all duration-300 shadow-lg
+  ${isCollapsed ? "w-16" : "w-64"}`}
+>
+  {/* Top Bar with Button */}
+  <div className="flex items-center justify-end p-2">
+    <button
+      onClick={() => setIsCollapsed(!isCollapsed)}
+      className="bg-[rgb(246,243,243)] hover:bg-[rgb(212,218,212)] text-black rounded-full w-6 h-6 
+      flex items-center justify-center shadow-md transition-all duration-300"
+    >
+      {isCollapsed ? <FiChevronRight size={12} /> : <FiChevronLeft size={14} />}
+    </button>
+  </div>
+
 
         <div className="px-3 pt-6 flex flex-col h-full">
           {/* Main Navigation */}
@@ -97,7 +101,7 @@ export default function Sidebar() {
                           </div>
                           {!isCollapsed && <span className="text-sm font-medium text-black">{item.label}</span>}
                           {isCollapsed && (
-                            <div className="absolute left-full ml-1 mr-1 mt-5 px-2 py-6 bg-[rgb(129,154,145)] text-black text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-md whitespace-nowrap">
+                            <div className="absolute left-full ml-1 mr-1 mt-5 px-2 pr-3 bg-[rgb(129,154,145)] text-black text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-md whitespace-nowrap">
                               {item.label}
                             </div>
                           )}
