@@ -32,6 +32,7 @@ import EvacuationModal from "./components/EvacuationModel";
 
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
+import FloodNews from "./components/NewsScaping";
 
 
 
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/join-volunteer" element={<JoinVolunteer />} />
           <Route path="/admin/volunteer-requests" element={<AdminVolunteerRequests />} />
           <Route path="/about" element={<About />} />
+          <Route path='/news' element={<FloodNews/>}/>
         </Route>
       </Routes>
     </Router>

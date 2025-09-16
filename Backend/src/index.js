@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const authRouter = require('./routes/authRouter');
 const requestRouter = require('./routes/requestRouter');
+const{getFloodNews} =require("./controller/newsController");
 
 // ✅ UPDATED: Import volunteer routes
 // const volunteerRouter = require('./routes/volunteer');
@@ -47,6 +48,8 @@ app.get("/", (req, res) => {
 // ✅ API Routes
 app.use('/api/auth', authRouter);
 app.use('/api/request', requestRouter);
+app.get("/api/flood-news", getFloodNews);
+
 // app.use('/api/volunteer', volunteerRouter); // ✅ Added volunteer routes
 
 // ✅ Start server

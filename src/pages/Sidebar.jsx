@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import { FaNewspaper } from "react-icons/fa";
 import { 
   FiBarChart2, 
   FiMap, 
@@ -44,6 +45,7 @@ export default function Sidebar() {
     { path: "/services", label: "Services", icon: <FiHeart className="w-5 h-5" /> },
     { path: "/help", label: "Help", icon: <FiHelpCircle className="w-5 h-5" /> },
     { path: "/user_request", label: "User Dashboard", icon: <FiUser className="w-5 h-5" /> },
+    { path: "/news", label: "Latest News", icon: <FaNewspaper className="w-5 h-5" /> },
   ];
 
   // 🎨 Theme colors
