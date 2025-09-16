@@ -6,7 +6,6 @@ import {
   FiBarChart2, 
   FiMap, 
   FiHeart, 
-  FiHelpCircle, 
   FiChevronLeft, 
   FiChevronRight,
   FiUsers,
@@ -43,7 +42,6 @@ export default function Sidebar() {
     { path: "/analytics", label: "Analytics Dashboard", icon: <FiBarChart2 className="w-5 h-5" /> },
     { path: "/Evacuation", label: "Evacuation Map", icon: <FiMap className="w-5 h-5" /> },
     { path: "/services", label: "Services", icon: <FiHeart className="w-5 h-5" /> },
-    { path: "/help", label: "Help", icon: <FiHelpCircle className="w-5 h-5" /> },
     { path: "/user_request", label: "User Dashboard", icon: <FiUser className="w-5 h-5" /> },
     { path: "/news", label: "Latest News", icon: <FaNewspaper className="w-5 h-5" /> },
   ];
@@ -66,7 +64,7 @@ export default function Sidebar() {
       )}
       
       <aside
-        className={`h-screen bg-gradient-to-b ${bgStart} ${bgEnd} text-black flex-shrink-0 fixed left-0 top-0 
+        className={`h-screen data.rainfall.toFixed(1) text-black flex-shrink-0 fixed left-0 top-0 
         overflow-y-auto transition-all duration-300 z-30 shadow-lg
         ${isCollapsed ? "w-16" : "w-64"} lg:relative lg:z-0`}
       >
@@ -134,12 +132,7 @@ export default function Sidebar() {
             </div>
           </nav>
 
-          {/* Footer */}
-          {!isCollapsed && (
-            <p className="text-xs text-[rgb(167,193,168)] mt-6 px-4 text-center">
-              © {new Date().getFullYear()} FlashAlert. All rights reserved.
-            </p>
-          )}
+          
         </div>
       </aside>
     </>

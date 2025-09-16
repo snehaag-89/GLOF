@@ -293,8 +293,7 @@ function Home() {
         <Footer />
       </div>
 
-      {/* ✅ Evacuation Modal */}
-      <EvacuationModal visible={modalVisible} onClose={closeEvacuationMap} />
+      
     </div>
   );
 }

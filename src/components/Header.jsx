@@ -2,27 +2,23 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="w-full bg-[#34495E] shadow-lg pl-6 py-7 flex items-center justify-between">
-      
-      {/* Left - Logo / Title */}
-      <div className="text-3xl font-bold text-white flex-1 min-w-0 text-center">
-        Flood Early Warning System
+    <header className="w-full bg-gradient-to-r from-[#f1f8e9] via-[#f9fbe7] to-[#f1f8e9] py-5 flex items-center justify-between border-b border-[#c5e1a5]">
+      {/* Left - Logo/Title aligned to the left with no padding */}
+      <div className="text-3xl font-bold text-[#33691e] ml-6">
+        Flood Warning System
       </div>
 
       {/* Right - Home + Logout buttons */}
-      <div className="flex items-center flex-shrink-0 gap-4 mr-4">
+      <div className="flex items-center flex-shrink-0 gap-4 mr-6">
         <Link
           to="/"
-          className="px-5 py-2 bg-[#4caf50] text-white font-semibold rounded-md hover:bg-[#388e3c] transition-colors duration-200"
+          className="px-6 py-3 bg-[#33691e] text-white font-semibold rounded-lg hover:bg-[#2e7d32] transition-all duration-300 shadow-md hover:shadow-lg"
         >
           Home
         </Link>
-        <button className="px-5 py-2 h-10 w-24 bg-[#00bcd4] text-white font-semibold rounded-md hover:bg-[#0097a7] transition-colors duration-200">
+        <button className="px-6 py-3 bg-[#33691e] text-white font-semibold rounded-lg hover:bg-[#2e7d32] transition-all duration-300 shadow-md hover:shadow-lg">
           Logout
         </button>
-         {/* <button className="px-5 py-2 ml-5 bg-[#00bcd4] text-white font-semibold rounded-md hover:bg-[#0097a7] transition-colors duration-200 flex items-center justify-center">
-          profile
-        </button> */}
       </div>
     </header>
   );
