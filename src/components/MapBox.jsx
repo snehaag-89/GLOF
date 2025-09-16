@@ -24,10 +24,10 @@ const FloodMapCard = ({ data }) => {
   }, [map]);
 
   return (
-    <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20 p-6 flex flex-col h-full">
+    <div className="bg-[#d4dedf] backdrop-blur-lg rounded-2xl shadow-lg border border-[#1f333d] p-6 flex flex-col h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold text-white flex items-center">
+        <h2 className="text-lg font-bold text-black flex items-center">
           <i className="fas fa-map-marked-alt text-[#00bcd4] mr-2"></i>
           Affected Areas
         </h2>

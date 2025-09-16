@@ -47,7 +47,7 @@ const RainfallCard = ({ data }) => {
         plugins: {
           legend: {
             labels: {
-              color: "#fff",
+              color: "black",
             },
           },
         },
@@ -58,7 +58,7 @@ const RainfallCard = ({ data }) => {
               color: "rgba(255, 255, 255, 0.1)",
             },
             ticks: {
-              color: "#fff",
+              color: "black",
             },
           },
           x: {
@@ -66,7 +66,7 @@ const RainfallCard = ({ data }) => {
               color: "rgba(255, 255, 255, 0.1)",
             },
             ticks: {
-              color: "#fff",
+              color: "black",
               maxTicksLimit: 12,
             },
           },
@@ -82,10 +82,10 @@ const RainfallCard = ({ data }) => {
   }, [data.rainfallData]);
 
   return (
-    <div className="bg-[rgba(26,43,50,0.7)] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-cyan-400/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-cyan-400/40">
+    <div className="bg-[#d4dedf] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-cyan-400/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-cyan-400/40">
       {/* Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-        <h2 className="text-xl font-semibold text-white">Rainfall Measurement</h2>
+        <h2 className="text-xl font-semibold text-black">Rainfall Measurement</h2>
         <i className="fas fa-cloud-rain text-cyan-400 text-2xl"></i>
       </div>
 

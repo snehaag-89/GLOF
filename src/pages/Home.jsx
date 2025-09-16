@@ -275,7 +275,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white font-sans p-5">
+    <div className="min-h-screen bg-[#f2f9f9] text-white font-sans p-5">
       <div className="max-w-[2400px] mx-auto">
         {/* ✅ Alert Banner */}
         <AlertBanner visible={alertVisible} onViewPlan={showEvacuationMap} />

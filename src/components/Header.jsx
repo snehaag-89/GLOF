@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="w-full bg-gradient-to-br from-[#0f2027] to-[#203a43] shadow-lg pl-6 py-3 flex items-center justify-between">
+    <header className="w-full bg-[#34495E] shadow-lg pl-6 py-7 flex items-center justify-between">
+      
       {/* Left - Logo / Title */}
-      <div className="text-3xl font-bold text-white flex-1 min-w-0">
+      <div className="text-3xl font-bold text-white flex-1 min-w-0 text-center">
         Flood Early Warning System
       </div>
 
