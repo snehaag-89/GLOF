@@ -261,7 +261,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`h-screen bg-gray-100 text-black flex-shrink-0
+      className={`h-full bg-gray-100 text-black flex-shrink-0
       overflow-y-auto transition-all duration-300 shadow-lg
       ${isCollapsed ? "w-22" : "w-64"}`}
     >

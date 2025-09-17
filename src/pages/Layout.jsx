@@ -10,7 +10,7 @@ export default function Layout() {
       <Header />
 
       {/* Below Header → Sidebar + Content */}
-      <div className="flex  overflow-hidden">
+      <div className="flex ">
         {/* Sidebar Left */}
         <div className="bg-gradient-to-b from-white to-[rgb(209,216,190)] shadow-md">
           <Sidebar />
