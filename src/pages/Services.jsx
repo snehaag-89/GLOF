@@ -411,15 +411,17 @@ function Services() {
       }).addTo(medicalMap);
 
       const listItem = document.createElement("div");
-      listItem.className =
-        "p-4 border-l-4 border-[#ff6b6b] bg-white hover:bg-[#fef5f5] cursor-pointer rounded-md shadow-sm transition";
-      listItem.innerHTML = `
-        <h3 class="font-semibold text-gray-800 mb-1">${facility.name}</h3>
-        <p class="text-sm text-gray-600"><strong>Distance:</strong> ${facility.distance}</p>
-        <p class="text-sm text-gray-600"><strong>Address:</strong> ${facility.address}</p>
-        <p class="text-sm text-gray-600"><strong>Contact:</strong> ${facility.contact}</p>
-        <p class="text-sm text-gray-600"><strong>Capacity:</strong> ${facility.capacity}</p>
-      `;
+listItem.className =
+  "p-4 border-l-4 border-blue-400 bg-blue-50 hover:bg-blue-100 cursor-pointer rounded-md shadow-sm transition";
+
+listItem.innerHTML = `
+  <h3 class="font-semibold text-black-900 mb-1">${facility.name}</h3>
+  <p class="text-sm text-black-800"><strong>Distance:</strong> ${facility.distance}</p>
+  <p class="text-sm text-black-800"><strong>Address:</strong> ${facility.address}</p>
+  <p class="text-sm text-black-800"><strong>Contact:</strong> ${facility.contact}</p>
+  <p class="text-sm text-black-800"><strong>Capacity:</strong> ${facility.capacity}</p>
+`;
+
       listItem.addEventListener("click", () => {
         medicalMap.setView(facility.coords, 16);
         marker.openPopup();
@@ -462,14 +464,16 @@ function Services() {
 
       const listItem = document.createElement("div");
       listItem.className =
-        "p-4 border-l-4 border-green-500 bg-white hover:bg-[#f5fef6] cursor-pointer rounded-md shadow-sm transition";
-      listItem.innerHTML = `
-        <h3 class="font-semibold text-gray-800 mb-1">${center.name}</h3>
-        <p class="text-sm text-gray-600"><strong>Distance:</strong> ${center.distance}</p>
-        <p class="text-sm text-gray-600"><strong>Address:</strong> ${center.address}</p>
-        <p class="text-sm text-gray-600"><strong>Contact:</strong> ${center.contact}</p>
-        <p class="text-sm text-gray-600"><strong>Capacity:</strong> ${center.capacity}</p>
-      `;
+  "p-4 border-l-4 border-blue-400 bg-blue-50 hover:bg-blue-100 cursor-pointer rounded-md shadow-sm transition";
+
+listItem.innerHTML = `
+  <h3 class="font-semibold text-black mb-1">${center.name}</h3>
+  <p class="text-sm text-black"><strong>Distance:</strong> ${center.distance}</p>
+  <p class="text-sm text-black"><strong>Address:</strong> ${center.address}</p>
+  <p class="text-sm text-black"><strong>Contact:</strong> ${center.contact}</p>
+  <p class="text-sm text-black"><strong>Capacity:</strong> ${center.capacity}</p>
+`;
+
       listItem.addEventListener("click", () => {
         foodMap.setView(center.coords, 16);
         marker.openPopup();
@@ -512,14 +516,16 @@ function Services() {
 
       const listItem = document.createElement("div");
       listItem.className =
-        "p-4 border-l-4 border-yellow-500 bg-white hover:bg-[#fffbf0] cursor-pointer rounded-md shadow-sm transition";
-      listItem.innerHTML = `
-        <h3 class="font-semibold text-gray-800 mb-1">${shelter.name}</h3>
-        <p class="text-sm text-gray-600"><strong>Distance:</strong> ${shelter.distance}</p>
-        <p class="text-sm text-gray-600"><strong>Address:</strong> ${shelter.address}</p>
-        <p class="text-sm text-gray-600"><strong>Contact:</strong> ${shelter.contact}</p>
-        <p class="text-sm text-gray-600"><strong>Capacity:</strong> ${shelter.capacity}</p>
-      `;
+  "p-4 border-l-4 border-blue-400 bg-blue-50 hover:bg-blue-100 cursor-pointer rounded-md shadow-sm transition";
+
+listItem.innerHTML = `
+  <h3 class="font-semibold text-black mb-1">${shelter.name}</h3>
+  <p class="text-sm text-black"><strong>Distance:</strong> ${shelter.distance}</p>
+  <p class="text-sm text-black"><strong>Address:</strong> ${shelter.address}</p>
+  <p class="text-sm text-black"><strong>Contact:</strong> ${shelter.contact}</p>
+  <p class="text-sm text-black"><strong>Capacity:</strong> ${shelter.capacity}</p>
+`;
+
       listItem.addEventListener("click", () => {
         shelterMap.setView(shelter.coords, 16);
         marker.openPopup();
@@ -530,73 +536,71 @@ function Services() {
 
   // ---------------- JSX ----------------
   return (
-    <div className="max-w-6xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-xl border border-gray-200">
-      <h1 className="text-center text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#0f2027] to-[#00bcd4] mb-12">
-        Emergency Services During Floods - MMMUT Gorakhpur
-      </h1>
+    <div className="max-w-6xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-xl border border-1">
+  <h1 className="text-center text-4xl font-extrabold text-black pb-2 mb-12">
+    Emergency Services During Floods - MMMUT Gorakhpur
+  </h1>
 
-      {/* Tabs */}
-      <div className="flex mb-8 rounded-lg overflow-hidden border border-gray-200 bg-gradient-to-r from-[#0f2027] to-[#203a43]">
-        {["medical", "food", "shelter"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => handleTabClick(tab)}
-            className={`flex-1 py-3 text-center font-semibold text-sm transition duration-200 relative tracking-wide ${
-              activeTab === tab
-                ? "bg-cyan-200/20 text-white"
-                : "text-gray-300 hover:bg-cyan-200/10"
-            }`}
-          >
-            {tab === "medical" && "Medical Help"}
-            {tab === "food" && "Food Help"}
-            {tab === "shelter" && "Shelter Help"}
-            {activeTab === tab && (
-              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-cyan-500"></span>
-            )}
-          </button>
-        ))}
+  {/* Tabs */}
+  <div className="flex mb-8 rounded-lg overflow-hidden border border-1 bg-gradient-to-r from-blue-400 to-blue-200">
+    {["medical", "food", "shelter"].map((tab) => (
+      <button
+        key={tab}
+        onClick={() => handleTabClick(tab)}
+        className={`flex-1 py-3 text-center font-semibold text-sm transition duration-200 relative tracking-wide text-black ${
+          activeTab === tab
+            ? "bg-blue-300/40 border-b-2 border-blue-700"
+            : "hover:bg-blue-200/40"
+        }`}
+      >
+        {tab === "medical" && "Medical Help"}
+        {tab === "food" && "Food Help"}
+        {tab === "shelter" && "Shelter Help"}
+      </button>
+    ))}
+  </div>
+
+  {/* Tab Sections */}
+  {["medical", "food", "shelter"].map((tab) => (
+    <div
+      key={tab}
+      id={tab}
+      className={`${
+        activeTab === tab ? "flex flex-col" : "hidden"
+      } bg-blue-50 rounded-xl border border-1 shadow-lg p-6 mb-10 transition-all duration-300 ease-in-out`}
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-4">
+        <h2 className="text-2xl font-semibold text-black tracking-tight inline-block">
+          {tab === "medical" && "Nearby Medical Facilities"}
+          {tab === "food" && "Nearby Food Distribution Centers"}
+          {tab === "shelter" && "Nearby Shelter Facilities"}
+        </h2>
       </div>
 
-      {/* Tab Sections */}
-      {["medical", "food", "shelter"].map((tab) => (
+      <div className="flex flex-col md:flex-row gap-6 md:h-[500px]">
+        {/* Map Section */}
         <div
-          key={tab}
-          id={tab}
-          className={`${
-            activeTab === tab ? "flex flex-col" : "hidden"
-          } bg-white rounded-xl border border-gray-200 shadow-lg p-6 mb-10 transition-all duration-300 ease-in-out`}
-        >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 border-b pb-4">
-            <h2 className="text-2xl font-semibold text-[#0f2027] tracking-tight">
-              {tab === "medical" && "Nearby Medical Facilities"}
-              {tab === "food" && "Nearby Food Distribution Centers"}
-              {tab === "shelter" && "Nearby Shelter Facilities"}
-            </h2>
-          </div>
+          id={`${tab}-map`}
+          className="flex-1 h-[400px] md:h-full rounded-xl shadow-md border-2 border-blue-300"
+        ></div>
 
-          <div className="flex flex-col md:flex-row gap-6 md:h-[500px]">
-            {/* Map Section */}
-            <div
-              id={`${tab}-map`}
-              className="flex-1 h-[400px] md:h-full rounded-xl shadow-md border"
-            ></div>
-
-            {/* List Section */}
-            <div className="w-full md:w-[320px] h-[400px] md:h-full overflow-y-auto border rounded-xl bg-gray-50">
-              <div className="bg-gradient-to-r from-[#0f2027] to-[#203a43] text-white font-semibold text-sm p-4 sticky top-0 z-10 rounded-t-xl">
-                {tab === "medical" && `Medical Facilities (${medicalFacilities.length})`}
-                {tab === "food" && `Food Centers (${foodCenters.length})`}
-                {tab === "shelter" && `Shelters (${shelterFacilities.length})`}
-              </div>
-              <div
-                id={`${tab}-list`}
-                className="divide-y divide-gray-200 px-4 py-2 space-y-2"
-              ></div>
-            </div>
+        {/* List Section */}
+        <div className="w-full md:w-[320px] h-[400px] md:h-full overflow-y-auto border-2 border-1 rounded-xl bg-blue-100">
+          <div className="bg-gradient-to-r from-blue-400 to-blue-300 text-black font-semibold text-sm p-4 sticky top-0 z-10 rounded-t-xl">
+            {tab === "medical" && `Medical Facilities (${medicalFacilities.length})`}
+            {tab === "food" && `Food Centers (${foodCenters.length})`}
+            {tab === "shelter" && `Shelters (${shelterFacilities.length})`}
           </div>
+          <div
+            id={`${tab}-list`}
+            className="divide-y divide-blue-300 px-4 py-2 space-y-2"
+          ></div>
         </div>
-      ))}
+      </div>
     </div>
+  ))}
+</div>
+
   );
 }
 

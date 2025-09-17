@@ -252,19 +252,19 @@ export default function EnhancedAnalyticsDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-white p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className="text-3xl font-bold text-black mb-2">
             🌊 Glacier Flood Risk Dashboard
           </h1>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className={`h-3 w-3 rounded-full mr-2 ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-black">
               {isConnected ? 'Live data connected' : 'Disconnected'} • Updated every 5 seconds
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* Alert Banner */}
@@ -313,7 +313,7 @@ export default function EnhancedAnalyticsDashboard() {
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="bg-white p-5 rounded-xl shadow-md">
-            <h3 className="text-lg font-semibold mb-4">Water Level Trend</h3>
+            <h3 className="text-lg text-black font-semibold mb-4">Water Level Trend</h3>
             <div className="h-72">
               <Line data={waterLevelData} options={chartOptions} />
             </div>
@@ -327,7 +327,7 @@ export default function EnhancedAnalyticsDashboard() {
         </div>
 
         <div className="bg-white p-5 rounded-xl shadow-md mb-8">
-          <h3 className="text-lg font-semibold mb-4">Risk Score Evolution</h3>
+          <h3 className="text-lg text-black font-semibold mb-4">Risk Score Evolution</h3>
           <div className="h-72">
             <Line data={riskData} options={chartOptions} />
           </div>
