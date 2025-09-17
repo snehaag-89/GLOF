@@ -19,8 +19,8 @@ const StatisticsCard = ({ data }) => {
           {
             label: "Water Level (m)",
             data: [2.8, 3.1, 2.9, 3.5, 3.2, 3.8, 3.2],
-            borderColor: "#3498db",
-            backgroundColor: "rgba(52, 152, 219, 0.2)",
+            borderColor: "#0077CC",
+            backgroundColor: "rgba(100, 181, 246, .7)",
             borderWidth: 2,
             tension: 0.4,
             fill: true,
@@ -28,8 +28,8 @@ const StatisticsCard = ({ data }) => {
           {
             label: "Rainfall (mm)",
             data: [35, 42, 28, 50, 38, 45, 42],
-            borderColor: "#2ecc71",
-            backgroundColor: "rgba(46, 204, 113, 0.2)",
+            borderColor: "#1CA656",
+            backgroundColor: "rgba(46, 204, 113, 0.4)",
             borderWidth: 2,
             tension: 0.4,
             fill: true,
@@ -50,18 +50,18 @@ const StatisticsCard = ({ data }) => {
           y: {
             beginAtZero: true,
             grid: {
-              color: "rgba(0, 0, 0, 0.05)",
+              color: "rgba(0, 0, 0, 0.1)",
             },
             ticks: {
-              color: "#2c3e50",
+              color: "black",
             },
           },
           x: {
             grid: {
-              color: "rgba(0, 0, 0, 0.05)",
+              color: "rgba(0, 0, 0, 0.1)",
             },
             ticks: {
-              color: "#2c3e50",
+              color: "black",
             },
           },
         },
@@ -76,36 +76,36 @@ const StatisticsCard = ({ data }) => {
   }, []);
 
   return (
-    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-blue-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-blue-300">
+    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 transition-all duration-300 hover:bg-[#d9e2e3] hover:-translate-y-1 hover:shadow-xl hover:border-gray-400">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-blue-100">
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-500">
         <h2 className="text-xl font-bold text-black">Current Statistics</h2>
         <i className="fas fa-chart-bar text-black text-2xl"></i>
       </div>
 
       {/* Stats Section */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-        <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
-          <i className="fas fa-ruler-combined text-blue-500 text-xl mb-2"></i>
-          <div className="text-lg font-bold text-blue-800">{data.waterLevel}m</div>
-          <div className="text-sm text-blue-600">Water Level</div>
+        <div className="flex flex-col items-center bg-[#f0f3f3] rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
+          <i className="fas fa-ruler-combined text-black text-xl mb-2"></i>
+          <div className="text-lg font-bold text-black">{data.waterLevel}m</div>
+          <div className="text-sm text-black">Water Level</div>
         </div>
 
-        <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
-          <i className="fas fa-tint text-blue-500 text-xl mb-2"></i>
-          <div className="text-lg font-bold text-blue-800">{data.rainfall.toFixed(1)}mm</div>
-          <div className="text-sm text-blue-600">Rainfall (24h)</div>
+        <div className="flex flex-col items-center bg-[#f0f3f3] rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
+          <i className="fas fa-tint text-black text-xl mb-2"></i>
+          <div className="text-lg font-bold text-black">{data.rainfall.toFixed(1)}mm</div>
+          <div className="text-sm text-black">Rainfall (24h)</div>
         </div>
 
-        <div className="flex flex-col items-center bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
-          <i className="fas fa-exclamation-triangle text-amber-500 text-xl mb-2"></i>
-          <div className="text-lg font-bold text-blue-800">{data.affectedAreas}</div>
-          <div className="text-sm text-blue-600">Affected Areas</div>
+        <div className="flex flex-col items-center bg-[#f0f3f3] rounded-xl p-4 shadow-md hover:shadow-lg transition border border-blue-100">
+          <i className="fas fa-exclamation-triangle text-black text-xl mb-2"></i>
+          <div className="text-lg font-bold text-black">{data.affectedAreas}</div>
+          <div className="text-sm text-black">Affected Areas</div>
         </div>
       </div>
 
       {/* Chart */}
-      <div className="relative h-[320px] w-full rounded-xl overflow-hidden bg-white p-2 border border-blue-100">
+      <div className="relative h-[320px] w-full rounded-xl overflow-hidden bg-[#f0f3f3] p-2 border border-blue-100">
         <canvas ref={chartRef}></canvas>
       </div>
 

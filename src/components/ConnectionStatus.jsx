@@ -15,14 +15,14 @@ const ConnectionStatus = ({ status }) => {
       {/* Dot */}
       <div
         className={`h-3 w-3 rounded-full animate-pulse ${
-          isConnected ? "bg-green-400" : "bg-red-400"
+          isConnected ? "bg-green-800" : "bg-red-500"
         }`}
       ></div>
 
       {/* Text */}
       <span
         className={`text-sm font-medium ${
-          isConnected ? "text-green-300" : "text-red-300"
+          isConnected ? "text-green-800" : "text-red-500"
         }`}
       >
         {isConnected
