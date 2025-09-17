@@ -46,12 +46,38 @@ export default function Sidebar() {
     { path: "/news", label: "Latest News", icon: <FaNewspaper className="w-5 h-5" /> },
   ];
 
-  // 🎨 Theme colors
-  const bgStart = "from-white";
-  const bgEnd = "to-[rgb(209,216,190)]";
-  const activeBg = "bg-[rgb(129,154,145)]";
-  const inactiveText = "text-[rgb(167,193,168)]";
-  const hoverBg = "hover:bg-[rgb(129,154,145)] hover:text-white";
+ // 🎨 Theme colors
+  // const bgStart = "from-white";
+  // const bgEnd = "to-[rgb(209,230,190)]";
+  // const activeBg = "bg-[rgb(129,154,145)]";
+  // const inactiveText = "text-[rgb(167,193,168)]";
+  // const hoverBg = "hover:bg-[rgb(129,154,145)] hover:text-white";
+
+
+// const bgStart = "from-white";
+// // const bgEnd = "to-[rgb(195,200,220)]";     
+// const bgEnd = "to-[rgb(70,100,140)]";        // light background shade of rgb(27,60,83)
+// const activeBg = "bg-[rgb(87,130,153)]";        // medium-light teal
+// const inactiveText = "text-[rgb(137,170,190)]"; // soft muted teal-gray
+// const hoverBg = "hover:bg-gray-400 hover:text-black";
+
+
+const bgStart = "bg-[#CFDDEB]";     // main background (Steel Blue)
+const bgEnd = "bg-[#CFDDEB]"
+const activeBg = "bg-[#35658a]";        // थोड़ा dark shade for active
+const inactiveText = "text-[#a9c4d9]";  // light steel blue-gray for inactive
+const hoverBg = "hover:bg-[#35658a] hover:text-white"; // hover पर dark + white text
+
+
+
+// const bgStart = "from-white";
+// const bgEnd = "to-[rgb(200,210,225)]";         // header background (light)
+// const activeBg = "bg-[rgb(87,130,153)]";       // active/hover state
+// const inactiveText = "text-[rgb(137,170,190)]"; // muted text tone
+// const hoverBg = "hover:bg-gray-300 hover:text-[rgb(27,60,83)]";
+
+
+
 
   return (
     <>

@@ -24,17 +24,21 @@ const FloodMapCard = ({ data }) => {
   }, [map]);
 
   return (
-    <div className="bg-[#d4dedf] backdrop-blur-lg rounded-2xl shadow-lg border border-[#1f333d] p-6 flex flex-col h-full">
+    <div
+      className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 
+      transition-all duration-300 
+      hover:bg-[#d9e2e3] hover:-translate-y-1 hover:shadow-xl hover:border-gray-400"
+    >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold text-black flex items-center">
-          <i className="fas fa-map-marked-alt text-[#00bcd4] mr-2"></i>
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+        <h2 className="text-xl font-bold text-black flex items-center">
+          <i className="fas fa-map-marked-alt text-cyan-400 mr-2"></i>
           Affected Areas
         </h2>
       </div>
 
       {/* Map */}
-      <div className="h-[400px] w-full rounded-xl overflow-hidden border border-white/20 shadow-inner">
+      <div className="relative h-[320px] w-full rounded-xl overflow-hidden border border-white/20 shadow-inner">
         <MapContainer
           center={[26.7606, 83.3732]}
           zoom={13}
@@ -83,11 +87,9 @@ const FloodMapCard = ({ data }) => {
       </div>
 
       {/* Footer */}
-      <div className="mt-3 text-xs text-gray-300 text-right">
+      <div className="text-right text-m text-black mt-6">
         Last updated:{" "}
-        <span className="font-semibold text-[#00bcd4]">
-          {new Date().toLocaleTimeString()}
-        </span>
+        <span className="font-medium">{new Date().toLocaleTimeString()}</span>
       </div>
 
       {/* Custom Styles for Popup */}

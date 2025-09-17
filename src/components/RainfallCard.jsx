@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
@@ -82,7 +81,11 @@ const RainfallCard = ({ data }) => {
   }, [data.rainfallData]);
 
   return (
-    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-cyan-400/40">
+    // <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-gray-500">
+    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-300 
+  transition-all duration-300 
+  hover:bg-[#d7e0e1] hover:-translate-y-1 hover:shadow-xl hover:border-gray-400">
+
       {/* Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
         <h2 className="text-xl font-bold text-black">Rainfall Measurement</h2>
@@ -104,9 +107,6 @@ const RainfallCard = ({ data }) => {
 };
 
 export default RainfallCard;
-
-
-
 
 
 

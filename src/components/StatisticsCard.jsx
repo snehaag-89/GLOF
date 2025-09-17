@@ -76,11 +76,11 @@ const StatisticsCard = ({ data }) => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-blue-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-blue-300">
+    <div className="bg-[#e1e9ea] backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-blue-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-blue-300">
       {/* Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-blue-100">
-        <h2 className="text-xl font-semibold text-blue-800">Current Statistics</h2>
-        <i className="fas fa-chart-bar text-blue-500 text-2xl"></i>
+        <h2 className="text-xl font-bold text-black">Current Statistics</h2>
+        <i className="fas fa-chart-bar text-black text-2xl"></i>
       </div>
 
       {/* Stats Section */}
@@ -110,7 +110,7 @@ const StatisticsCard = ({ data }) => {
       </div>
 
       {/* Last Updated */}
-      <div className="text-right text-sm text-blue-600/80 mt-4">
+      <div className="text-right text-m text-black mt-4">
         Last updated:{" "}
         <span className="font-medium">{new Date().toLocaleTimeString()}</span>
       </div>
