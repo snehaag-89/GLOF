@@ -4,12 +4,14 @@ import {
   Route,
 } from "react-router-dom";
 
+
 import Layout from "./pages/Layout";
 import EvacuationPage from "./components/EvacuationModel";
 import VolunteerPanel from "./components/SeperatePannel/VolunteerPanel";
 import CreateRequestPanel from "./components/SeperatePannel/Pannel";
 import Services from "./pages/Services";
 import FloodMonitoringDashboard from "./pages/Home";
+
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Analytics from "./components/Analytics";
@@ -19,6 +21,12 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./pages/Auth";
 import Login from "./pages/Login";
+import Us from "./pages/Us";
+
+
+
+
+
 
 
 
@@ -28,11 +36,16 @@ import VoiceInput from "./pages/About";
 import Dictaphone from "./pages/Home";
 import MainPage from "./pages/MainPage";
 
+
 import EvacuationModal from "./components/EvacuationModel";
+
 
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
 import FloodNews from "./components/NewsScaping";
+
+
+
 
 
 
@@ -43,6 +56,7 @@ export default function App() {
         {/* Public (No Header/Sidebar) */}
         <Route path="/auth" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
 
         {/* Protected (With Header + Sidebar from Layout) */}
         <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
@@ -58,8 +72,11 @@ export default function App() {
           <Route path="/admin/volunteer-requests" element={<AdminVolunteerRequests />} />
           <Route path="/about" element={<About />} />
           <Route path='/news' element={<FloodNews/>}/>
+          <Route path='/Us' element={<Us/>}/>
         </Route>
       </Routes>
     </Router>
   );
 }
+
+
