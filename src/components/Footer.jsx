@@ -1,39 +1,53 @@
-import React from "react";
+import React from 'react';
+import './Footer.css'; // We'll create this CSS file
 
 const Footer = () => {
   return (
-    <footer className="mt-8 px-6 py-5 bg-[#30465c]  border-t border-slate-200 rounded-t-xl shadow-inner">
-      <div className="text-center space-y-2">
-        <p className="text-sm text-slate-700">
-          Data sourced from{" "}
-          <span className="font-semibold text-red-700 hover:text-blue-500 transition-colors duration-200 cursor-pointer">
-            NASA satellite imagery
-          </span>{" "}
-          •{" "}
-          <span className="font-semibold text-blue-600 hover:text-blue-500 transition-colors duration-200 cursor-pointer">
-            MMMUT Gorakhpur Flood Monitoring System
-          </span>
-        </p>
-        <p className="text-xs text-gray-100">
-          This is a <span className="italic text-gray-300">demonstration interface</span>. In a real implementation, data would come from NASA APIs.
-        </p>
+    <footer className="jeevan-footer">
+      <div className="footer-content">
+        <div className="footer-section">
+          <h3>JeevanSetu</h3>
+          <p>Your Bridge to Safety</p>
+          <div className="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📷</a>
+          </div>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Emergency Contacts</a></li>
+            <li><a href="#">Safety Guidelines</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Evacuation Plans</a></li>
+            <li><a href="#">Weather Updates</a></li>
+            <li><a href="#">Volunteer Sign-up</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h4>Contact Us</h4>
+          <p>📞 Emergency Hotline: 1078</p>
+          <p>📧 Email: help@jeevansetu.org</p>
+          <p>🏢 Address: Disaster Management Authority, India</p>
+        </div>
+      </div>
+      
+      <div className="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} JeevanSetu. All rights reserved. | Privacy Policy | Terms of Service</p>
       </div>
     </footer>
   );
 };
 
 export default Footer;
-
-
-// import React from 'react';
-
-// const Footer = () => {
-//   return (
-//     <div className="footer">
-//       <p>Data sourced from NASA satellite imagery • MMMUT Gorakhpur Flood Monitoring System</p>
-//       <p>This is a demonstration interface. In a real implementation, data would come from NASA APIs.</p>
-//     </div>
-//   );
-// };
-
-// export default Footer;
