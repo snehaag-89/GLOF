@@ -154,6 +154,7 @@
 
 // siren code bina restriction 
 
+
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import AlertBanner from "../components/Alerts";
@@ -169,6 +170,8 @@ function Home() {
   const [alertVisible, setAlertVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState("connected");
+
+
 
   // 🔊 sound unlock
   const [soundEnabled, setSoundEnabled] = useState(false);
@@ -193,6 +196,15 @@ function Home() {
       })
       .catch((err) => console.warn("Sound unlock failed:", err));
   };
+
+
+  const [metrics, setMetrics] = useState({
+  lake_area: 2,
+  water_level: 50,
+  rainfall: 10,
+  snow_melt: 0.5,
+  timestamp: new Date().toISOString()
+});
 
   const [data, setData] = useState({
     waterLevel: 3.2,
@@ -224,26 +236,26 @@ function Home() {
       const updateData = () => {
         const currentData = dataRef.current;
         const currentAlertVisible = alertVisibleRef.current;
-
+  
         const waterLevelChange = (Math.random() - 0.5) * 0.8;
         const newWaterLevel = Math.max(
           0.5,
           Math.min(6, parseFloat(currentData.waterLevel) + waterLevelChange)
         ).toFixed(1);
-
+  
         const rainfallChange = (Math.random() - 0.3) * 20;
         const newRainfall = Math.max(
           0,
           Math.min(100, parseInt(currentData.rainfall) + rainfallChange)
         );
-
+  
         const areaChange =
           Math.random() < 0.3 ? (Math.random() < 0.5 ? -1 : 1) : 0;
         const newAffectedAreas = Math.max(
           1,
           Math.min(15, currentData.affectedAreas + areaChange)
         );
-
+  
         const newWaterLevelData = [
           ...currentData.waterLevelData.slice(1),
           parseFloat(newWaterLevel),
@@ -252,11 +264,22 @@ function Home() {
           ...currentData.rainfallData.slice(1),
           newRainfall,
         ];
-
+  
+        // Calculate risk score based on both water level and rainfall
+        const waterLevelRisk = (parseFloat(newWaterLevel) / 6) * 100; // Max water level is 6
+        const rainfallRisk = (newRainfall / 100) * 100; // Max rainfall is 100
+        
+        // Weighted risk calculation (water level has higher weight)
+        const riskScore = (waterLevelRisk * 0.8) + (rainfallRisk * 0.4);
+        console.log(riskScore)
+        // Determine status based on risk score
         let newStatus = "low";
-        if (newWaterLevel > 4.5) newStatus = "high";
-        else if (newWaterLevel > 3.2) newStatus = "medium";
-
+        if (riskScore > 72) {newStatus = "high";clearInterval(intervalId);
+          setTimeout(() => {
+            intervalId = setInterval(updateData, 4000); // resume after 2 min
+          }, 20000); }
+        else if (riskScore > 40) newStatus = "medium";
+  
         setData({
           waterLevel: newWaterLevel,
           rainfall: newRainfall,
@@ -265,27 +288,28 @@ function Home() {
           waterLevelData: newWaterLevelData,
           rainfallData: newRainfallData,
         });
-
-        if (newWaterLevel > 4.5 && !currentAlertVisible) {
+  
+        // Alert based on risk score, not just water level
+        if (riskScore > 70 && !currentAlertVisible) {
           setAlertVisible(true);
         }
-        if (newWaterLevel <= 4.5 && currentAlertVisible) {
+        if (riskScore <= 70 && currentAlertVisible) {
           setAlertVisible(false);
         }
       };
-
+  
       updateData();
       const intervalTime = 5000 + Math.random() * 1000;
       intervalId = setInterval(updateData, intervalTime);
     };
-
+  
     simulateWebSocket();
-
+  
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
   }, []);
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       if (Math.random() < 0.1) {
@@ -293,11 +317,12 @@ function Home() {
         setTimeout(() => setConnectionStatus("connected"), 3000);
       }
     }, 10000);
-
+  
     return () => clearInterval(interval);
   }, []);
 
   return (
+
     <div className="min-h-screen bg-[#f0f3f3] text-white font-sans p-5">
       {/* 🔊 Permission Overlay */}
       {!soundEnabled && (
@@ -314,6 +339,19 @@ function Home() {
           </div>
         </div>
       )}
+
+
+    <div className="min-h-screen  bg-[#f0f3f3] text-white font-sans p-5">
+{data.status !== "high" && (
+  <div className={`rounded-lg p-4 mb-4 text-center font-semibold text-lg
+    ${data.status === "low" ? "bg-green-100 border border-green-400 text-green-800 shadow-sm" : 
+      "bg-yellow-100 border border-yellow-400 text-yellow-800 shadow-sm"}`}>
+    Current Risk Status: {data.status.toUpperCase()}
+  </div>
+)}
+
+
+
 
       <div className="max-w-[2400px] mx-auto">
         {/* ✅ Alert Banner */}
@@ -336,11 +374,14 @@ function Home() {
         <ConnectionStatus status={connectionStatus} />
         <Footer />
       </div>
-    </div>
-  );
-}
+    </div> </div>
+     );
 
+}
 export default Home;
+
+
+
 
 
 
