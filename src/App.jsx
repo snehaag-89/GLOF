@@ -18,6 +18,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./pages/Auth";
 import Login from "./pages/Login";
+import Us from "./pages/Us";
 
 import JoinVolunteer from "./pages/JoinVolunteer";
 import AdminVolunteerRequests from "./pages/AdminVolunteerRequests";
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="admin/volunteer-requests" element={<AdminVolunteerRequests />} />
           <Route path="about" element={<About />} />
           <Route path="news" element={<FloodNews />} />
+          <Route path="Us" element={<Us/>}/>
         </Route>
       </Routes>
     </Router>
