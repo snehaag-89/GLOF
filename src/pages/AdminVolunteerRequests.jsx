@@ -42,9 +42,12 @@ export default function AdminVolunteerRequests() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Pending Volunteer Requests</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-blue-800">
+        Pending Volunteer Requests
+      </h2>
       {requests.length === 0 ? (
-        <p className="text-gray-500">No pending requests</p>
+         <p className="text-gray-500 flex justify-center items-center">No pending requests</p>
+
       ) : (
         <div className="grid gap-4">
           {requests.map((user) => (
