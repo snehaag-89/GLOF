@@ -285,7 +285,7 @@
 //                     {request.details || "No details provided"}
 //                   </h3>
 //                 </div>
-                
+
 //                 <div className="p-4">
 //                   <div className="flex items-center mb-4">
 //                     <div className="flex-shrink-0">
@@ -298,7 +298,7 @@
 //                       <p className="text-xs text-gray-500">{request.userId?.email || "No email"}</p>
 //                     </div>
 //                   </div>
-                  
+
 //                   <div className="space-y-2">
 //                     {request.userId?.phone && (
 //                       <div className="flex items-center text-sm text-gray-600">
@@ -308,7 +308,7 @@
 //                         {request.userId.phone}
 //                       </div>
 //                     )}
-                    
+
 //                     {request.userId?.address && (
 //                       <div className="flex items-start text-sm text-gray-600">
 //                         <svg className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -319,7 +319,7 @@
 //                       </div>
 //                     )}
 //                   </div>
-                  
+
 //                   <div className="mt-4 flex space-x-2">
 //                     <button className="flex-1 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-medium py-2 px-4 rounded-lg transition-colors">
 //                       Accept
@@ -329,7 +329,7 @@
 //                     </button>
 //                   </div>
 //                 </div>
-                
+
 //                 <div className="px-4 py-2 bg-gray-50 text-xs text-gray-500">
 //                   Created {new Date(request.createdAt).toLocaleDateString()}
 //                 </div>
@@ -356,7 +356,7 @@
 
 
 
-
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { FaHome } from "react-icons/fa";
@@ -387,6 +387,12 @@ function VolunteerPanel() {
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("all");
   const [activeStatus, setActiveStatus] = useState("all");
+
+  const navigate = useNavigate();
+
+  const handleSOSRedirect = () => {
+    navigate("/sos-panel");
+  };
 
   useEffect(() => {
     const initialize = async () => {
@@ -470,6 +476,8 @@ function VolunteerPanel() {
     return categoryMatch && statusMatch;
   });
 
+
+
   // Counts
   const requestCounts = {
     all: requests.length,
@@ -507,9 +515,9 @@ function VolunteerPanel() {
       case "Food":
         return <FaUtensils />;
       case "Medical":
-        return <FaHeartbeat/>;
+        return <FaHeartbeat />;
       case "Shelter":
-        return <FaHome/>;
+        return <FaHome />;
       default:
         return "📋";
     }
@@ -518,10 +526,10 @@ function VolunteerPanel() {
   // Helper function to format address
   const formatAddress = (request) => {
     if (request.address) return request.address;
-    
+
     // Fallback to user address if available
     if (request.userId?.address) return request.userId.address;
-    
+
     return "Address not provided";
   };
 
@@ -533,7 +541,7 @@ function VolunteerPanel() {
       </div>
     </div>
   );
-  
+
   if (user?.role !== "volunteer") return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full mx-4">
@@ -551,6 +559,7 @@ function VolunteerPanel() {
   );
 
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -561,6 +570,13 @@ function VolunteerPanel() {
               <p className="text-gray-600 mt-2">Welcome back, {user?.name || 'Volunteer'}!</p>
             </div>
             <div className="mt-4 md:mt-0 flex items-center space-x-2">
+              <button
+                onClick={handleSOSRedirect}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition"
+              >
+                🚨 SOS Requests
+              </button>
+              
               <div className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
                 {requests.length} total requests
               </div>
@@ -574,7 +590,7 @@ function VolunteerPanel() {
         {/* Filters */}
         <div className="mb-8 bg-white rounded-2xl p-5 shadow-sm">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Filter Requests</h2>
-          
+
           <div className="mb-5">
             <h3 className="text-sm font-medium text-gray-700 mb-3">By Category</h3>
             <div className="flex flex-wrap gap-2">
@@ -582,26 +598,24 @@ function VolunteerPanel() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`flex items-center px-4 py-2 rounded-xl text-sm transition-colors ${
-                    activeCategory === category
-                      ? "bg-blue-500 text-white shadow-md"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                  className={`flex items-center px-4 py-2 rounded-xl text-sm transition-colors ${activeCategory === category
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
                 >
                   {category !== "all" && (
                     <span className="mr-2">{getCategoryIcon(category)}</span>
                   )}
                   <span>{category === "all" ? "All Categories" : category}</span>
-                  <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                    activeCategory === category ? "bg-white/20" : "bg-gray-200"
-                  }`}>
+                  <span className={`ml-2 px-2 py-1 rounded-full text-xs ${activeCategory === category ? "bg-white/20" : "bg-gray-200"
+                    }`}>
                     {requestCounts[category]}
                   </span>
                 </button>
               ))}
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-sm font-medium text-gray-700 mb-3">By Status</h3>
             <div className="flex flex-wrap gap-2">
@@ -610,16 +624,14 @@ function VolunteerPanel() {
                   <button
                     key={status}
                     onClick={() => setActiveStatus(status)}
-                    className={`px-4 py-2 rounded-xl text-sm transition-colors ${
-                      activeStatus === status
-                        ? "bg-blue-500 text-white shadow-md"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    className={`px-4 py-2 rounded-xl text-sm transition-colors ${activeStatus === status
+                      ? "bg-blue-500 text-white shadow-md"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
                   >
                     {status === "all" ? "All Statuses" : status}
-                    <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                      activeStatus === status ? "bg-white/20" : "bg-gray-200"
-                    }`}>
+                    <span className={`ml-2 px-2 py-1 rounded-full text-xs ${activeStatus === status ? "bg-white/20" : "bg-gray-200"
+                      }`}>
                       {statusCounts[status]}
                     </span>
                   </button>
@@ -639,7 +651,7 @@ function VolunteerPanel() {
               Showing {filteredRequests.length} of {requests.length} requests
             </div>
           </div>
-          
+
           {filteredRequests.length === 0 ? (
             <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -669,11 +681,11 @@ function VolunteerPanel() {
                         {req.status}
                       </span>
                     </div>
-                    
+
                     <p className="text-gray-800 mb-4 line-clamp-3">
                       {req.details || "No details provided"}
                     </p>
-                    
+
                     <div className="space-y-2 text-sm text-gray-600 mb-4">
                       <div className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -710,7 +722,7 @@ function VolunteerPanel() {
                         </button>
                       )}
 
-                      {req.status === "Accepted" && 
+                      {req.status === "Accepted" &&
                         req.volunteerId === user._id && (
                           <button
                             onClick={() => handleComplete(req._id)}
@@ -754,3 +766,5 @@ function VolunteerPanel() {
 }
 
 export default VolunteerPanel;
+
+
