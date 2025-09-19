@@ -16,8 +16,7 @@ export const logout = async () => {
 };
 
 export default function Header() {
-  return (
-    <header className="w-full bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] py-4 flex justify-between items-center shadow-lg border-b border-blue-300">
+  return (<header className="w-full bg-[#30465c]  py-4 flex justify-between items-center shadow-lg border-b border-blue-300">
   {/* Left - Logo/Title */}
   <div className="ml-8 flex flex-col">
     <div className="text-4xl font-bold text-white tracking-wide">
@@ -27,6 +26,7 @@ export default function Header() {
       Your Bridge to Safety
     </div>
   </div>
+    
 
   {/* Right - Navigation buttons */}
   <div className="flex items-center gap-4 mr-8">

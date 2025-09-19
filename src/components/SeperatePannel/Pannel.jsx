@@ -125,7 +125,7 @@ export default function CreateRequestPanel() {
         </div>
 
         {/* Content Area */}
-        <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <div className="bg-gray-100 rounded-xl p-6 border border-gray-200">
           
           {/* Help Tab */}
           {selectedTab === "help" && (

@@ -44,8 +44,8 @@ const EvacuationPage = () => {
     <div className="min-h-screen bg-white p-6 border-1">
   <div className="max-w-6xl mx-auto ">
     {/* Header */}
-    <div className="bg-blue-200 rounded-xl p-6 mb-6 shadow-lg border-1">
-      <h2 className="text-2xl font-bold text-black text-center">Flood Evacuation Plan for High-Risk Areas</h2>
+    <div className="bg-[#8db4db]  rounded-xl p-6 mb-6 shadow-lg border-1">
+      <h2 className="text-2xl font-extrabold text-[#33373b] text-center">Flood Evacuation Plan for High-Risk Areas</h2>
       <p className="text-black text-center mt-2">Safe routes and shelter locations for emergency evacuation</p>
     </div>
 

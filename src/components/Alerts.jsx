@@ -126,7 +126,11 @@
 
 
 
+
+
+
 // siren code bina restriction
+
 
 // import React, { useEffect, useState } from "react";
 
@@ -336,16 +340,16 @@
 
 
 import React, { useEffect, useState } from "react";
-// import socket from "../socket";
 import socket from "../utils/socket";
 import { useSendSOS } from "../hooks/useSendSOS";
+import { Link } from "react-router-dom";
 
 const AlertBanner = ({ visible, onViewPlan, soundEnabled, audioRef }) => {
   const { sendSOS, loading } = useSendSOS();
   const [latestSOS, setLatestSOS] = useState(null);
 
+  // 🔔 Listen for real-time SOS notifications
   useEffect(() => {
-    // ✅ Listen for real-time SOS notifications
     socket.on("newSOS", (sos) => {
       console.log("Received new SOS:", sos);
       setLatestSOS(sos);
@@ -356,10 +360,13 @@ const AlertBanner = ({ visible, onViewPlan, soundEnabled, audioRef }) => {
     };
   }, []);
 
+  // 🎵 Handle sound play/pause
   useEffect(() => {
     if (soundEnabled && audioRef?.current) {
       if (visible) {
-        audioRef.current.play().catch((err) => console.warn("Sound play failed:", err));
+        audioRef.current.play().catch((err) =>
+          console.warn("Sound play failed:", err)
+        );
       } else {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -380,32 +387,96 @@ const AlertBanner = ({ visible, onViewPlan, soundEnabled, audioRef }) => {
             Flood Warning: High Risk Area
           </h3>
           <p className="text-sm text-gray-100 opacity-90">
-            Immediate evacuation recommended. View evacuation routes and shelters.
+            Immediate evacuation recommended. View evacuation routes and
+            shelters.
           </p>
+
           {latestSOS && (
             <p className="text-sm text-yellow-200 mt-1">
-              🚨 New SOS from user {latestSOS.userId} at lat: {latestSOS.location.lat}, lng: {latestSOS.location.lng}
+              🚨 New SOS from user {latestSOS.userId} at lat:{" "}
+              {latestSOS.location.lat}, lng: {latestSOS.location.lng}
             </p>
           )}
         </div>
       </div>
 
-      <button
-        onClick={sendSOS}
-        disabled={loading}
-        className="bg-white text-red-600 font-bold px-5 py-2 rounded-full shadow-md hover:-translate-y-0.5 hover:shadow-lg transition"
-      >
-        {loading ? "Sending..." : "🚨 Send SOS"}
-      </button>
+      <div className="flex gap-3">
+        {/* SOS Button */}
+        <button
+          onClick={sendSOS}
+          disabled={loading}
+          className="bg-white text-red-600 font-bold px-5 py-2 rounded-full shadow-md hover:-translate-y-0.5 hover:shadow-lg transition"
+        >
+          {loading ? "Sending..." : "🚨 Send SOS"}
+        </button>
 
-      <button
-        onClick={onViewPlan}
-        className="bg-white text-red-600 font-bold px-5 py-2 rounded-full shadow-md hover:-translate-y-0.5 hover:shadow-lg transition"
-      >
-        View Evacuation Plan
-      </button>
+        {/* Evacuation Link Button */}
+        <Link to="/Evacuation">
+          <button
+            onClick={onViewPlan}
+            className="bg-white text-red-600 font-bold px-5 py-2 rounded-full shadow-md hover:-translate-y-0.5 hover:shadow-lg transition"
+          >
+            View Evacuation Plan
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
 
 export default AlertBanner;
+
+
+
+
+
+
+//  siren 2 min tak bajega
+
+// import React, { useEffect } from "react";
+
+// const AlertBanner = ({ visible, onViewPlan, soundEnabled, audioRef }) => {
+//   useEffect(() => {
+//     if (!audioRef?.current || !soundEnabled) return;
+
+//     if (visible) {
+//       audioRef.current
+//         .play()
+//         .catch((err) => console.warn("Autoplay blocked:", err));
+//     } else {
+//       audioRef.current.pause();
+//       audioRef.current.currentTime = 0;
+//     }
+//   }, [visible, soundEnabled, audioRef]);
+
+//   if (!visible) return null;
+
+//   return (
+//     <div className="flex items-center justify-between bg-gradient-to-r from-red-600 to-red-400 px-6 py-4 rounded-xl mb-6 shadow-lg border border-white/10 animate-pulse">
+//       {/* Left Content */}
+//       <div className="flex items-center">
+//         <div className="text-3xl mr-4 text-white">
+//           <i className="fas fa-exclamation-triangle"></i>
+//         </div>
+//         <div>
+//           <h3 className="text-lg font-semibold text-white">
+//             Flood Warning: High Risk Area
+//           </h3>
+//           <p className="text-sm text-gray-100 opacity-90">
+//             Immediate evacuation recommended. View evacuation routes and shelters.
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Button */}
+//       <button
+//         onClick={onViewPlan}
+//         className="bg-white text-red-600 font-bold px-5 py-2 rounded-full shadow-md hover:-translate-y-0.5 hover:shadow-lg transition"
+//       >
+//         View Evacuation Plan
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default AlertBanner;

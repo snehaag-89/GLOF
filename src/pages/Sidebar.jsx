@@ -261,61 +261,59 @@ export default function Sidebar() {
 
   return (
     <aside
-  className={`h-full bg-gradient-to-b bg-white text-black flex-shrink-0
-  overflow-y-auto transition-all duration-300 shadow-lg
-  ${isCollapsed ? "w-20" : "w-64"}`}
->
-  {/* Collapse Button */}
-  <div className="flex items-center justify-end p-3">
-    <button
-      onClick={() => setIsCollapsed(!isCollapsed)}
-      className="bg-blue-200 hover:bg-blue-300 text-blue-800 rounded-full w-7 h-7 
-      flex items-center justify-center shadow-md transition-all duration-300 hover:shadow-lg"
+      className={`h-full bg-gray-100 text-black flex-shrink-0
+      overflow-y-auto transition-all duration-300 shadow-lg
+      ${isCollapsed ? "w-22" : "w-64"}`}
     >
-      {isCollapsed ? <FiChevronRight size={14} /> : <FiChevronLeft size={14} />}
-    </button>
-  </div>
-
-  {/* Sidebar Content */}
-  <div className="px-3 flex flex-col h-full">
-    <nav className="flex-1 mt-2">
-      <div className="mb-8">
-        <ul className="space-y-2">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
-            return (
-              <li key={item.path}>
-                <Link to={item.path}>
-                  <div
-                    className={`group relative flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl mx-2 transition-all duration-200
-                      ${isActive 
-                        ? "bg-blue-200 border-l-4 border-blue-600 text-black shadow-md" 
-                        : "text-black hover:bg-blue-100 hover:shadow-md"}`}
-                  >
-                    <div className={`${isActive ? "text-blue-700" : "text-blue-600"}`}>
-                      {item.icon}
-                    </div>
-                    
-                    {/* Show text only if not collapsed */}
-                    {!isCollapsed && (
-                      <span className="text-sm font-medium">{item.label}</span>
-                    )}
-              
-                    {/* Tooltip on hover when collapsed */}
-                    {isCollapsed && (
-                      <div className="absolute left-full ml-2 px-2 py-1 bg-blue-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg z-10">
-                        {item.label}
-                      </div>
-                    )}
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+      {/* Collapse Button */}
+      <div className="flex items-center justify-end p-2">
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="bg-[rgb(246,243,243)] hover:bg-[rgb(212,218,212)] text-black rounded-full w-6 h-6 
+          flex items-center justify-center shadow-md transition-all duration-300"
+        >
+          {isCollapsed ? <FiChevronRight size={12} /> : <FiChevronLeft size={14} />}
+        </button>
       </div>
-    </nav>
-  </div>
-</aside>
+
+      {/* Sidebar Content */}
+      <div className="px-3 flex flex-col h-full">
+        <nav className="flex-1">
+          <div className="mb-8">
+          
+            <ul className="space-y-2">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <li key={item.path}>
+                  <Link to={item.path}>
+                    <div
+                      className={`group relative flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl mx-2
+                        ${isActive ? activeBg + " text-black shadow-inner" : inactiveText + " " + hoverBg}`}
+                    >
+                      <div className="text-black">{item.icon}</div>
+                      
+                      {/* Show text only if not collapsed */}
+                      {!isCollapsed && (
+                        <span className="text-sm font-medium">{item.label}</span>
+                      )}
+                
+                      {/* Tooltip on hover when collapsed */}
+                      {isCollapsed && (
+                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                          {item.label}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                </li>
+                
+                );
+              })}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </aside>
   );
 }

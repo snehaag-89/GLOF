@@ -45,7 +45,7 @@ export default function JoinVolunteer() {
   };
 
   return (
-    <div className="w-full  bg-white rounded-lg p-8 shadow-md ">
+    <div className="w-full  bg-[#f0f3f3] rounded-lg p-8 shadow-md ">
       <div className="text-center mb-8">
         <div className="w-20 h-20 mx-auto mb-4 bg-blue-50 rounded-full flex items-center justify-center ">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

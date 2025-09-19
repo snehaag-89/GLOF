@@ -536,27 +536,29 @@ listItem.innerHTML = `
 
   // ---------------- JSX ----------------
   return (
-    <div className="max-w-6xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-xl border border-1">
-  <h1 className="text-center text-4xl font-extrabold text-black pb-2 mb-12">
+    <div className="max-w-6xl mx-auto mt-8 p-6 bg-gray-100 rounded-2xl shadow-xl border border-1">
+  <h1 className="text-center text-4xl font-extrabold text-[#30465c] pb-2 mb-12">
     Emergency Services During Floods - MMMUT Gorakhpur
   </h1>
 
   {/* Tabs */}
-  <div className="flex mb-8 rounded-lg overflow-hidden border border-1 bg-gradient-to-r from-blue-400 to-blue-200">
+  <div className="flex mb-8 rounded-lg overflow-hidden  border-1 bg-[#618ab5]">
     {["medical", "food", "shelter"].map((tab) => (
-      <button
-        key={tab}
-        onClick={() => handleTabClick(tab)}
-        className={`flex-1 py-3 text-center font-semibold text-sm transition duration-200 relative tracking-wide text-black ${
-          activeTab === tab
-            ? "bg-blue-300/40 border-b-2 border-blue-700"
-            : "hover:bg-blue-200/40"
-        }`}
-      >
-        {tab === "medical" && "Medical Help"}
-        {tab === "food" && "Food Help"}
-        {tab === "shelter" && "Shelter Help"}
-      </button>
+  <button
+  key={tab}
+  onClick={() => handleTabClick(tab)}
+  className={`flex-1 py-3 text-center font-bold text-sm transition duration-200 relative tracking-wide text-white ${
+    activeTab === tab
+      ? "bg-[#618ab5] border-b-4 border-blue-950"
+      : "hover:bg-[#436a94]"
+  }`}
+>
+  {tab === "medical" && "Medical Help"}
+  {tab === "food" && "Food Help"}
+  {tab === "shelter" && "Shelter Help"}
+</button>
+
+
     ))}
   </div>
 
@@ -567,7 +569,7 @@ listItem.innerHTML = `
       id={tab}
       className={`${
         activeTab === tab ? "flex flex-col" : "hidden"
-      } bg-blue-50 rounded-xl border border-1 shadow-lg p-6 mb-10 transition-all duration-300 ease-in-out`}
+      } bg-white rounded-xl  border-1 shadow-lg p-6 mb-10 transition-all duration-300 ease-in-out`}
     >
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-4">
         <h2 className="text-2xl font-semibold text-black tracking-tight inline-block">
@@ -581,12 +583,12 @@ listItem.innerHTML = `
         {/* Map Section */}
         <div
           id={`${tab}-map`}
-          className="flex-1 h-[400px] md:h-full rounded-xl shadow-md border-2 border-blue-300"
+          className="flex-1 h-[400px] md:h-full rounded-xl shadow-md border-2 border-black"
         ></div>
 
         {/* List Section */}
-        <div className="w-full md:w-[320px] h-[400px] md:h-full overflow-y-auto border-2 border-1 rounded-xl bg-blue-100">
-          <div className="bg-gradient-to-r from-blue-400 to-blue-300 text-black font-semibold text-sm p-4 sticky top-0 z-10 rounded-t-xl">
+        <div className="w-full md:w-[320px] h-[400px] md:h-full overflow-y-auto border-2  rounded-xl bg-[#e3eef9] ">
+          <div className="bg-[#8eb9e6] text-black font-semibold text-sm p-4 sticky top-0 z-10 rounded-t-xl">
             {tab === "medical" && `Medical Facilities (${medicalFacilities.length})`}
             {tab === "food" && `Food Centers (${foodCenters.length})`}
             {tab === "shelter" && `Shelters (${shelterFacilities.length})`}
